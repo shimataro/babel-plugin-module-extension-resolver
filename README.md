@@ -77,6 +77,10 @@ extension mapper
 }
 ```
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
 [image-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Windows/badge.svg
 [link-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver
 [image-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/macOS/badge.svg
