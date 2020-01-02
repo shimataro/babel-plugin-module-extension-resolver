@@ -41,7 +41,7 @@ export default function extensionResolver(plugin, options)
 	const {extensions = DEFAULT_EXTENSIONS, map = DEFAULT_MAP} = options;
 
 	return {
-		PLUGIN_NAME,
+		name: PLUGIN_NAME,
 		visitor: {
 			Program: {
 				enter(programPath, state)
