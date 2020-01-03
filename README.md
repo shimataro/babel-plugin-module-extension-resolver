@@ -20,6 +20,7 @@ npm i -D babel-plugin-module-extension-resolver
 
 ## Examples
 
+* [ECMAScript using `@babel/preset-env`](./examples/babel/README.md)
 * [TypeScript using `@babel/preset-typescript`](./examples/ts-babel/README.md)
 * [TypeScript using `tsc` and Babel](./examples/ts-tsc/README.md)
 
