@@ -10,7 +10,7 @@
 
 Babel plugin that resolves and maps module extensions.
 
-Inspired from [babel-plugin-extension-resolver](https://www.npmjs.com/package/babel-plugin-extension-resolver).
+Inspired by [babel-plugin-extension-resolver](https://www.npmjs.com/package/babel-plugin-extension-resolver).
 
 ## Install
 
