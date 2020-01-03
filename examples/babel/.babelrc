@@ -1,12 +1,15 @@
 {
   "presets": [
-    ["@babel/preset-env", {"targets": {"node": "8.5.0"}, "useBuiltIns": "usage", "corejs": 3, "modules": false}],
+    ["@babel/preset-env", {"targets": {"node": "4.0.0"}, "useBuiltIns": "usage", "corejs": 3}]
   ],
-  "plugins": [
-    ["module-extension-resolver", {
-      "map": {
-        ".mjs": ".js"
-      }
-    }]
-  ]
+  "env": {
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", {"targets": {"node": "8.5.0"}, "useBuiltIns": "usage", "corejs": 3, "modules": false}]
+      ],
+      "plugins": [
+        ["module-extension-resolver"]
+      ]
+    }
+  }
 }
