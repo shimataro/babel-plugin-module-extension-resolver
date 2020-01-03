@@ -1,3 +1,5 @@
+import "core-js";
+
 import "./dir";
 import * as mod from "./dir/mod";
 

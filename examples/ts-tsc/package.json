@@ -15,6 +15,9 @@
     "build:2-babel": "babel ./dist --out-dir ./dist",
     "check-updates": "ncu"
   },
+  "dependencies": {
+    "core-js": "3.6.1"
+  },
   "devDependencies": {
     "@babel/cli": "7.7.7",
     "@babel/core": "7.7.7",
