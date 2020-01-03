@@ -5,7 +5,7 @@
 See [`package.json`](./package.json) and [`.babelrc`](./.babelrc).
 
 * set `type` to `"module"` in `package.json`
-* specify `"@babel/preset-env": "7.7.5"` in `package.json` (**exactly** "7.7.5"; neigher "^7.7.5" nor "~7.7.5")
+* specify `"@babel/preset-env": "7.7.5"` in `package.json` (**exactly** `"7.7.5"`; neigher `"^7.7.5"` nor `"~7.7.5"`)
 * set `modules` to `false` in `.babelrc`
 * use `module-extension-resolver` plugin in `.babelrc`
 
