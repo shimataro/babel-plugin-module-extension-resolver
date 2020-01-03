@@ -21,6 +21,7 @@ npm i -D babel-plugin-module-extension-resolver
 ## Examples
 
 * [TypeScript using `@babel/preset-typescript`](./examples/ts-babel/README.md)
+* [TypeScript using `tsc` and Babel](./examples/ts-tsc/README.md)
 
 ## `.babelrc`
 
