@@ -18,6 +18,10 @@ Inspired from [babel-plugin-extension-resolver](https://www.npmjs.com/package/ba
 npm i -D babel-plugin-module-extension-resolver
 ```
 
+## Examples
+
+* [TypeScript using `@babel/preset-typescript`](./examples/ts-babel/README.md)
+
 ## `.babelrc`
 
 ```json

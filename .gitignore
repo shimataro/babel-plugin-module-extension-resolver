@@ -14,10 +14,10 @@ Thumbs.db
 *.rej
 
 # Node.js module files
-/node_modules/
+node_modules/
 
 # auto-generated files
-/dist/
+dist/
 
 # IDE files
 /.vscode/**
