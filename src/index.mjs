@@ -53,6 +53,11 @@ const DEFAULT_MAP = {
 export default function moduleExtensionResolver(babel, options)
 {
 	const {types} = babel;
+	const normalizedOptions = {
+		extensions: DEFAULT_EXTENSIONS,
+		map: DEFAULT_MAP,
+		...options,
+	};
 
 	return {
 		name: PLUGIN_NAME,
@@ -72,11 +77,11 @@ export default function moduleExtensionResolver(babel, options)
 					programPath.traverse({
 						CallExpression(declaration)
 						{
-							handleCallExpression(types, declaration, filename, options);
+							handleCallExpression(types, declaration, filename, normalizedOptions);
 						},
 						ImportDeclaration(declaration)
 						{
-							handleImportDeclaration(types, declaration, filename, options);
+							handleImportDeclaration(types, declaration, filename, normalizedOptions);
 						},
 					}, state);
 				},
@@ -163,7 +168,7 @@ function replaceSource(types, source, fileName, options)
  */
 function resolvePath(baseDir, sourcePath, options)
 {
-	const {extensions = DEFAULT_EXTENSIONS, map = DEFAULT_MAP} = options;
+	const {extensions, map} = options;
 
 	{
 		const resolvedPath = resolvePathCore(baseDir, sourcePath, extensions, map);
