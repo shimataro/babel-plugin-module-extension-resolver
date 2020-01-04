@@ -1,4 +1,4 @@
-# ES Modules example for TypeScript using tsc
+# ES Modules example for TypeScript with `tsc`
 
 ## Settings
 

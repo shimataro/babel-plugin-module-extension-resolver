@@ -1,4 +1,4 @@
-# ES Modules example using `@babel/preset-env`
+# ES Modules example with `@babel/preset-env`
 
 ## Settings
 
