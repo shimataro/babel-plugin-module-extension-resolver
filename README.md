@@ -20,9 +20,9 @@ npm i -D babel-plugin-module-extension-resolver
 
 ## Examples
 
-* [ECMAScript using `@babel/preset-env`](./examples/babel)
-* [TypeScript using `@babel/preset-typescript`](./examples/ts-babel)
-* [TypeScript using `tsc` and Babel](./examples/ts-tsc)
+* [ECMAScript with `@babel/preset-env`](./examples/babel)
+* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
+* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
 
 ## `.babelrc`
 

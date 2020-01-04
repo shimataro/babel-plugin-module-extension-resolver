@@ -1,4 +1,4 @@
-# ES Modules example for TypeScript using `@babel/preset-typescript`
+# ES Modules example for TypeScript with `@babel/preset-typescript`
 
 ## Settings
 
