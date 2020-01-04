@@ -83,6 +83,10 @@ export default function moduleExtensionResolver(babel, options)
 						{
 							handleImportDeclaration(types, declaration, filename, normalizedOptions);
 						},
+						ExportDeclaration(declaration)
+						{
+							replaceSource(types, declaration.get("source"), filename, extensions, map);
+						},
 					}, state);
 				},
 			},
