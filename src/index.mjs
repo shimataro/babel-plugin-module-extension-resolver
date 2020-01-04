@@ -75,6 +75,10 @@ export default function extensionResolver(plugin, options)
 						{
 							replaceSource(types, declaration.get("source"), filename, extensions, map);
 						},
+						ExportDeclaration(declaration)
+						{
+							replaceSource(types, declaration.get("source"), filename, extensions, map);
+						},
 					}, state);
 				},
 			},
