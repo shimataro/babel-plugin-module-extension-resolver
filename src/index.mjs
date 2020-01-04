@@ -13,8 +13,9 @@ import path from "path";
 const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
 /** @type {ExtensionList} */
 const DEFAULT_EXTENSIONS = [
-	".mjs",
 	".js",
+	".cjs",
+	".mjs",
 	".es",
 	".es6",
 	".ts",
