@@ -13,7 +13,7 @@
     "build:cjs": "npm run build-core",
     "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
     "build-core": "babel src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
-    "check-updates": "ncu"
+    "check-updates": "ncu -x @babel/preset-env"
   },
   "dependencies": {
     "core-js": "3.6.1"
@@ -23,7 +23,7 @@
     "@babel/core": "7.7.7",
     "@babel/preset-env": "7.7.5",
     "@types/core-js": "2.5.2",
-    "@types/node": "13.1.2",
+    "@types/node": "13.1.4",
     "babel-plugin-module-extension-resolver": "0.1.1",
     "cross-env": "6.0.3",
     "npm-check-updates": "4.0.1",
