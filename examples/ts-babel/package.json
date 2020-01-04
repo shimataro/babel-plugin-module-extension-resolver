@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "babel src --extensions '.ts,.tsx' --out-dir dist",
-    "check-updates": "ncu"
+    "check-updates": "ncu -x @babel/preset-env"
   },
   "dependencies": {
     "core-js": "3.6.1"
@@ -22,7 +22,7 @@
     "@babel/preset-env": "7.7.5",
     "@babel/preset-typescript": "7.7.7",
     "@types/core-js": "2.5.2",
-    "@types/node": "13.1.2",
+    "@types/node": "13.1.4",
     "babel-plugin-module-extension-resolver": "0.1.1",
     "npm-check-updates": "4.0.1"
   }
