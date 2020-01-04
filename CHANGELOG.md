@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * support `.cjs` extension
 
+### Fixed
+
+* Node.js version >=8.0.0
+
 ## [0.1.1] - 2020-01-02
 
 ### Fixed
