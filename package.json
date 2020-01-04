@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-module-extension-resolver",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Babel plugin that resolves and maps module extensions.",
   "keywords": [
     "babel",
@@ -21,10 +21,10 @@
     "build:cjs": "npm run build-core",
     "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
     "build-core": "babel src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
-    "check-updates": "ncu",
+    "check-updates": "ncu -x @babel/preset-env",
     "lint": "run-p lint:*",
     "lint:es": "eslint ./src --ext .mjs",
-    "lint:md": "markdownlint . --ignore ./node_modules",
+    "lint:md": "markdownlint . --ignore node_modules --ignore examples",
     "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
     "verify": "run-p lint"
   },
@@ -32,8 +32,8 @@
     "core-js": "3.6.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.7.5",
-    "@babel/core": "7.7.5",
+    "@babel/cli": "7.7.7",
+    "@babel/core": "7.7.7",
     "@babel/preset-env": "7.7.5",
     "babel-eslint": "10.0.3",
     "cross-env": "6.0.3",
@@ -46,6 +46,6 @@
     "yaml-lint": "1.2.4"
   },
   "engines": {
-    "node": "8.0.0"
+    "node": ">=8.0.0"
   }
 }

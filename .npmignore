@@ -1,7 +1,8 @@
-/.github/
-/node_modules/
+/examples/
 /scripts/
 /src/
+.github/
+node_modules/
 .babelrc
 .editorconfig
 .eslintrc.yml

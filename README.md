@@ -10,7 +10,104 @@
 
 Babel plugin that resolves and maps module extensions.
 
-Inspired from [babel-plugin-extension-resolver](https://www.npmjs.com/package/babel-plugin-extension-resolver).
+Inspired by [babel-plugin-extension-resolver](https://www.npmjs.com/package/babel-plugin-extension-resolver).
+
+## Examples
+
+### JavaScript
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.js
+│ └ lib.js
+├ main.js
+└ settings.json
+```
+
+Input (`main.js`):
+
+```javascript
+require("./dir/lib");
+require("./dir/lib.js");    // file exists
+require("./dir");           // directory has "index.js"
+require("./settings");      // ".json" extension
+require("./no-such-file");  // file NOT exists
+require("dir");             // not begins with "."
+```
+
+Output:
+
+```javascript
+require("./dir/lib.js");
+require("./dir/lib.js");
+require("./dir/index.js");
+require("./settings.json");
+require("./no-such-file");
+require("dir");
+```
+
+### JavaScript (`.mjs` extension)
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.mjs
+│ └ lib.mjs
+└ main.mjs
+```
+
+Input (`main.mjs`):
+
+```javascript
+import "./dir/lib";
+import "./dir";
+```
+
+Output:
+
+```javascript
+import "./dir/lib.mjs";
+import "./dir/index.mjs";
+```
+
+### TypeScript
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.ts
+│ └ lib.ts
+└ main.ts
+```
+
+Input (`main.ts`):
+
+```typescript
+import "./dir/lib";
+import "./dir";
+```
+
+Output:
+
+```javascript
+import "./dir/lib.js";
+import "./dir/index.js";
+```
+
+**NOTE:** `.ts` is replaced with `.js`. This behavior can be customized by options.
+
+For complete project, see below examples.
+
+* [ECMAScript with `@babel/preset-env`](./examples/babel)
+* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
+* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
 
 ## Install
 
@@ -30,15 +127,17 @@ With options:
 
 ```json
 {
-  "plugins": [["module-extension-resolver", {
-    "extensions": [".mjs", ".js", ".es", ".es6", ".ts", ".node", ".json"],
-    "map": {
-      ".ts": ".js",
-      ".es": ".js",
-      ".es6": ".js",
-      ".node": ".js"
-    }
-  }]]
+  "plugins": [
+    ["module-extension-resolver", {
+      "extensions": [".js", ".cjs", ".mjs", ".es", ".es6", ".ts", ".node", ".json"],
+      "map": {
+        ".ts": ".js",
+        ".es": ".js",
+        ".es6": ".js",
+        ".node": ".js"
+      }
+    }]
+  ]
 }
 ```
 
@@ -52,8 +151,9 @@ extensions to resolve
 
 ```json
 [
-  ".mjs",
   ".js",
+  ".cjs",
+  ".mjs",
   ".es",
   ".es6",
   ".ts",
