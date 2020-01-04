@@ -38,7 +38,7 @@ With options:
 {
   "plugins": [
     ["module-extension-resolver", {
-      "extensions": [".mjs", ".js", ".es", ".es6", ".ts", ".node", ".json"],
+      "extensions": [".js", ".cjs", ".mjs", ".es", ".es6", ".ts", ".node", ".json"],
       "map": {
         ".ts": ".js",
         ".es": ".js",
@@ -60,8 +60,9 @@ extensions to resolve
 
 ```json
 [
-  ".mjs",
   ".js",
+  ".cjs",
+  ".mjs",
   ".es",
   ".es6",
   ".ts",
