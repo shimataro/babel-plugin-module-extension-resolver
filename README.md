@@ -66,6 +66,8 @@ Input (`main.mjs`):
 ```javascript
 import "./dir/lib";
 import "./dir";
+
+export * from "./dir";
 ```
 
 Output:
@@ -73,6 +75,8 @@ Output:
 ```javascript
 import "./dir/lib.mjs";
 import "./dir/index.mjs";
+
+export * from "./dir/index.mjs";
 ```
 
 ### TypeScript
