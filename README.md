@@ -36,15 +36,17 @@ With options:
 
 ```json
 {
-  "plugins": [["module-extension-resolver", {
-    "extensions": [".mjs", ".js", ".es", ".es6", ".ts", ".node", ".json"],
-    "map": {
-      ".ts": ".js",
-      ".es": ".js",
-      ".es6": ".js",
-      ".node": ".js"
-    }
-  }]]
+  "plugins": [
+    ["module-extension-resolver", {
+      "extensions": [".mjs", ".js", ".es", ".es6", ".ts", ".node", ".json"],
+      "map": {
+        ".ts": ".js",
+        ".es": ".js",
+        ".es6": ".js",
+        ".node": ".js"
+      }
+    }]
+  ]
 }
 ```
 
