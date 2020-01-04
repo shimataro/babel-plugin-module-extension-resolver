@@ -30,23 +30,23 @@ root
 Input (`main.js`):
 
 ```javascript
-import "./dir/lib";
-import "./dir/lib.js";    // file exists
-import "./dir";           // directory has "index.js"
-import "./settings";      // ".json" extension
-import "./no-such-file";  // file NOT exists
-import "dir";             // not begins with "."
+require("./dir/lib");
+require("./dir/lib.js");    // file exists
+require("./dir");           // directory has "index.js"
+require("./settings");      // ".json" extension
+require("./no-such-file");  // file NOT exists
+require("dir");             // not begins with "."
 ```
 
 Output:
 
 ```javascript
-import "./dir/lib.js";
-import "./dir/lib.js";
-import "./dir/index.js";
-import "./settings.json";
-import "./no-such-file";
-import "dir";
+require("./dir/lib.js");
+require("./dir/lib.js");
+require("./dir/index.js");
+require("./settings.json");
+require("./no-such-file");
+require("dir");
 ```
 
 ### JavaScript (`.mjs` extension)
