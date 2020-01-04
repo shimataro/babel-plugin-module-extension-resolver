@@ -2,6 +2,20 @@ import fs from "fs";
 import path from "path";
 
 /**
+ * Babel plugin data
+ * @typedef {Object} Babel
+ */
+/**
+ * Babel types
+ * @typedef {Object} Types
+ */
+/**
+ * options
+ * @typedef {Object} Options
+ * @property {ExtensionList} extensions
+ * @property {ExtensionMap} map
+ */
+/**
  * extension list
  * @typedef {string[]} ExtensionList
  */
@@ -32,14 +46,13 @@ const DEFAULT_MAP = {
 
 /**
  * babel plugin
- * @param {*} plugin plugin data
- * @param {*} options plugin options
- * @returns {*} plugin information
+ * @param {Babel} babel babel plugin data
+ * @param {Options} options plugin options
+ * @returns {Object} plugin information
  */
-export default function extensionResolver(plugin, options)
+export default function moduleExtensionResolver(babel, options)
 {
-	const {types} = plugin;
-	const {extensions = DEFAULT_EXTENSIONS, map = DEFAULT_MAP} = options;
+	const {types} = babel;
 
 	return {
 		name: PLUGIN_NAME,
@@ -47,6 +60,7 @@ export default function extensionResolver(plugin, options)
 			Program: {
 				enter(programPath, state)
 				{
+					// filename = state.file.opts.filename;
 					const {
 						file: {
 							opts: {
@@ -58,22 +72,11 @@ export default function extensionResolver(plugin, options)
 					programPath.traverse({
 						CallExpression(declaration)
 						{
-							const callee = declaration.get("callee");
-							if(!types.isIdentifier(callee) || callee.node.name !== "require")
-							{
-								return;
-							}
-							const args = declaration.get("arguments");
-							if(args.length !== 1)
-							{
-								return;
-							}
-
-							replaceSource(types, args[0], filename, extensions, map);
+							handleCallExpression(types, declaration, filename, options);
 						},
 						ImportDeclaration(declaration)
 						{
-							replaceSource(types, declaration.get("source"), filename, extensions, map);
+							handleImportDeclaration(types, declaration, filename, options);
 						},
 					}, state);
 				},
@@ -83,15 +86,53 @@ export default function extensionResolver(plugin, options)
 }
 
 /**
- * replace source file name
- * @param {*} types types
- * @param {NodePath} source source path
- * @param {string} fileName processing file
- * @param {ExtensionList} extensions extension list
- * @param {ExtensionMap} map extension mapping data
+ * CallExpression() handler
+ * @param {Types} types types
+ * @param {NodePath} declaration declaration
+ * @param {string} filename filename
+ * @param {Options} options options
  * @returns {void}
  */
-function replaceSource(types, source, fileName, extensions, map)
+function handleCallExpression(types, declaration, filename, options)
+{
+	const callee = declaration.get("callee");
+	if(!types.isIdentifier(callee) || callee.node.name !== "require")
+	{
+		// do nothing if function name is not "require"
+		return;
+	}
+	const args = declaration.get("arguments");
+	if(args.length !== 1)
+	{
+		// do nothing if function doesn't have exactly 1 arguments
+		return;
+	}
+
+	replaceSource(types, args[0], filename, options);
+}
+
+/**
+ * ImportDeclaration() handler
+ * @param {Types} types types
+ * @param {NodePath} declaration declaration
+ * @param {string} filename filename
+ * @param {Options} options options
+ * @returns {void}
+ */
+function handleImportDeclaration(types, declaration, filename, options)
+{
+	replaceSource(types, declaration.get("source"), filename, options);
+}
+
+/**
+ * replace source file name
+ * @param {Types} types types
+ * @param {NodePath} source source path
+ * @param {string} fileName processing file
+ * @param {Options} options options
+ * @returns {void}
+ */
+function replaceSource(types, source, fileName, options)
 {
 	if(!types.isStringLiteral(source))
 	{
@@ -107,7 +148,7 @@ function replaceSource(types, source, fileName, extensions, map)
 
 	// resolve and normalize path
 	const baseDir = path.dirname(fileName);
-	const resolvedPath = resolvePath(baseDir, sourcePath, extensions, map);
+	const resolvedPath = resolvePath(baseDir, sourcePath, options);
 	const normalizedPath = normalizePath(resolvedPath);
 
 	source.replaceWith(types.stringLiteral(normalizedPath));
@@ -117,12 +158,13 @@ function replaceSource(types, source, fileName, extensions, map)
  * resolve path
  * @param {string} baseDir base directory
  * @param {string} sourcePath source path
- * @param {ExtensionList} extensions extension list
- * @param {ExtensionMap} map extension mapping data
+ * @param {Options} options options
  * @returns {string} resolved path
  */
-function resolvePath(baseDir, sourcePath, extensions, map)
+function resolvePath(baseDir, sourcePath, options)
 {
+	const {extensions = DEFAULT_EXTENSIONS, map = DEFAULT_MAP} = options;
+
 	{
 		const resolvedPath = resolvePathCore(baseDir, sourcePath, extensions, map);
 		if(resolvedPath !== null)
