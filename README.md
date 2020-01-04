@@ -12,17 +12,108 @@ Babel plugin that resolves and maps module extensions.
 
 Inspired by [babel-plugin-extension-resolver](https://www.npmjs.com/package/babel-plugin-extension-resolver).
 
+## Examples
+
+### JavaScript
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.js
+│ └ lib.js
+├ main.js
+└ settings.json
+```
+
+Input (`main.js`):
+
+```javascript
+import "./dir/lib";
+import "./dir/lib.js";    // file exists
+import "./dir";           // directory has "index.js"
+import "./settings";      // ".json" extension
+import "./no-such-file";  // file NOT exists
+import "dir";             // not begins with "."
+```
+
+Output:
+
+```javascript
+import "./dir/lib.js";
+import "./dir/lib.js";
+import "./dir/index.js";
+import "./settings.json";
+import "./no-such-file";
+import "dir";
+```
+
+### JavaScript (`.mjs` extension)
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.mjs
+│ └ lib.mjs
+└ main.mjs
+```
+
+Input (`main.mjs`):
+
+```javascript
+import "./dir/lib";
+import "./dir";
+```
+
+Output:
+
+```javascript
+import "./dir/lib.mjs";
+import "./dir/index.mjs";
+```
+
+### TypeScript
+
+Directory structure:
+
+```text
+root
+├ dir
+│ ├ index.ts
+│ └ lib.ts
+└ main.ts
+```
+
+Input (`main.ts`):
+
+```typescript
+import "./dir/lib";
+import "./dir";
+```
+
+Output:
+
+```javascript
+import "./dir/lib.js";
+import "./dir/index.js";
+```
+
+**NOTE:** `.ts` is replaced with `.js`. This behavior can be customized by options.
+
+For complete project, see below examples.
+
+* [ECMAScript with `@babel/preset-env`](./examples/babel)
+* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
+* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
+
 ## Install
 
 ```bash
 npm i -D babel-plugin-module-extension-resolver
 ```
-
-## Examples
-
-* [ECMAScript with `@babel/preset-env`](./examples/babel)
-* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
-* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
 
 ## `.babelrc`
 
