@@ -85,7 +85,7 @@ export default function moduleExtensionResolver(babel, options)
 						},
 						ExportDeclaration(declaration)
 						{
-							replaceSource(types, declaration.get("source"), filename, extensions, map);
+							handleExportDeclaration(types, declaration, filename, normalizedOptions);
 						},
 					}, state);
 				},
@@ -129,6 +129,19 @@ function handleCallExpression(types, declaration, filename, options)
  * @returns {void}
  */
 function handleImportDeclaration(types, declaration, filename, options)
+{
+	replaceSource(types, declaration.get("source"), filename, options);
+}
+
+/**
+ * ExportDeclaration() handler
+ * @param {Types} types types
+ * @param {NodePath} declaration declaration
+ * @param {string} filename filename
+ * @param {Options} options options
+ * @returns {void}
+ */
+function handleExportDeclaration(types, declaration, filename, options)
 {
 	replaceSource(types, declaration.get("source"), filename, options);
 }
