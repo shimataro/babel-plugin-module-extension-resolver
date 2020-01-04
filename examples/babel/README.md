@@ -9,15 +9,15 @@ See [`package.json`](./package.json) and [`.babelrc`](./.babelrc).
 
 ## Build
 
-Below command builds two types of file:
-
-* `./dist/*.js`: for CommonJS
-* `./dist/*.mjs`: for ES Modules
-
 ```bash
 npm ci
 npm run build
 ```
+
+This command generates two types of file:
+
+* `./dist/*.js`: for CommonJS
+* `./dist/*.mjs`: for ES Modules
 
 ## Run
 
