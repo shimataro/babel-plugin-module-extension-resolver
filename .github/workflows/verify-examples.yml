@@ -1,0 +1,44 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+on: push
+name: Examples
+jobs:
+  examples:
+    name: Build and run examples
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        - macos-latest
+        - ubuntu-latest
+        nodejs:
+        - "12.0.0"
+        example:
+        - "babel"
+        - "ts-babel"
+        - "ts-tsc"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+    - name: Install dependencies for plugin
+      run: npm ci
+    - name: Build plugin
+      run: npm run build
+    - name: Enter example directory
+      run: cd ./examples/${{ matrix.example }}
+    - name: Install dependencies for example
+      run: npm ci
+    - name: Build example
+      run: npm run build
+    - name: Run example
+      run: node --experimental-modules ./dist/index.js
