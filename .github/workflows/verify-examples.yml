@@ -13,17 +13,7 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs:
-        - "8.5.0"
-        - "8.6.0"
-        - "10.0.0"
         - "12.0.0"
-        exclude:
-        - os: windows-latest # On Windows, v8.5.0 causes ERR_INVALID_PROTOCOL; https://github.com/nodejs/node/issues/15374
-          nodejs: "8.5.0"
-        - os: macos-latest
-          nodejs: "8.6.0"
-        - os: ubuntu-latest
-          nodejs: "8.6.0"
         example:
         - "babel"
         - "ts-babel"
@@ -32,10 +22,10 @@ jobs:
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v1
-    - name: Install Node.js for plugin
+    - name: Install Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: |
         node -v
@@ -44,14 +34,6 @@ jobs:
       run: npm ci
     - name: Build plugin
       run: npm run build
-    - name: Install Node.js for example
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs }}
-    - name: Output versions
-      run: |
-        node -v
-        npm -v
     - name: Enter example directory
       run: cd ./examples/${{ matrix.example }}
     - name: Install dependencies for example
