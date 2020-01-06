@@ -2,8 +2,6 @@
 import fs from "fs";
 import path from "path";
 
-import * as Babel from "@babel/core"; // eslint-disable-line no-unused-vars
-
 /**
  * options
  * @typedef {Object} Options
@@ -44,7 +42,7 @@ const DEFAULT_KEEPS = [".json"];
 
 /**
  * babel plugin
- * @param {Babel} babel babel plugin data
+ * @param {babel} babel babel plugin data
  * @param {Options} options plugin options
  * @returns {Object} plugin information
  */
@@ -95,8 +93,8 @@ export default function moduleExtensionResolver(babel, options)
 
 /**
  * CallExpression() handler
- * @param {Babel.types} types types
- * @param {Babel.NodePath<Babel.types.CallExpression>} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath<babel.types.CallExpression>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -121,8 +119,8 @@ function handleCallExpression(types, declaration, filename, options)
 
 /**
  * ImportDeclaration() handler
- * @param {Babel.types} types types
- * @param {Babel.NodePath} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -134,8 +132,8 @@ function handleImportDeclaration(types, declaration, filename, options)
 
 /**
  * ExportDeclaration() handler
- * @param {Babel.types} types types
- * @param {Babel.NodePath} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -147,8 +145,8 @@ function handleExportDeclaration(types, declaration, filename, options)
 
 /**
  * replace source file name
- * @param {Babel.types} types types
- * @param {Babel.NodePath | Babel.NodePath[]} source source path
+ * @param {babel.types} types types
+ * @param {babel.NodePath | babel.NodePath[]} source source path
  * @param {string} fileName processing file
  * @param {Options} options options
  * @returns {void}
