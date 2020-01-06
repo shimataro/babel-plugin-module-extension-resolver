@@ -12,21 +12,27 @@ import path from "path";
 /**
  * options
  * @typedef {Object} Options
- * @property {ExtensionList} extensions
- * @property {ExtensionMap} map
+ * @property {OptionSrcExtensions} srcExtensions
+ * @property {OptionDstExtension} dstExtension
+ * @property {OptionExtensionsToKeep} extensionsToKeep
  */
 /**
- * extension list
- * @typedef {string[]} ExtensionList
+ * source extensions
+ * @typedef {string[]} OptionSrcExtensions
  */
 /**
- * extension mapping data
- * @typedef {Object<string, string>} ExtensionMap
+ * destination extension
+ * @typedef {string} OptionDstExtension
+ */
+/**
+ * extensions to keep
+ * @typedef {string[]} OptionExtensionsToKeep
  */
 
 const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
-/** @type {ExtensionList} */
-const DEFAULT_EXTENSIONS = [
+
+/** @type {OptionSrcExtensions} */
+const DEFAULT_SRC_EXTENSIONS = [
 	".js",
 	".cjs",
 	".mjs",
@@ -36,13 +42,10 @@ const DEFAULT_EXTENSIONS = [
 	".node",
 	".json",
 ];
-/** @type {ExtensionMap} */
-const DEFAULT_MAP = {
-	".ts": ".js",
-	".es": ".js",
-	".es6": ".js",
-	".node": ".js",
-};
+/** @type {OptionDstExtension} */
+const DEFAULT_DST_EXTENSION = ".js";
+/** @type {OptionExtensionsToKeep} */
+const DEFAULT_KEEPS = [".json"];
 
 /**
  * babel plugin
@@ -54,8 +57,9 @@ export default function moduleExtensionResolver(babel, options)
 {
 	const {types} = babel;
 	const normalizedOptions = {
-		extensions: DEFAULT_EXTENSIONS,
-		map: DEFAULT_MAP,
+		srcExtensions: DEFAULT_SRC_EXTENSIONS,
+		dstExtension: DEFAULT_DST_EXTENSION,
+		extensionsToKeep: DEFAULT_KEEPS,
 		...options,
 	};
 
@@ -185,10 +189,8 @@ function replaceSource(types, source, fileName, options)
  */
 function resolvePath(baseDir, sourcePath, options)
 {
-	const {extensions, map} = options;
-
 	{
-		const resolvedPath = resolvePathCore(baseDir, sourcePath, extensions, map);
+		const resolvedPath = resolvePathCore(baseDir, sourcePath, options);
 		if(resolvedPath !== null)
 		{
 			return resolvedPath;
@@ -198,7 +200,7 @@ function resolvePath(baseDir, sourcePath, options)
 	const absolutePath = path.join(baseDir, sourcePath);
 	if(isDirectory(absolutePath))
 	{
-		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), extensions, map);
+		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), options);
 		if(resolvedPath !== null)
 		{
 			return resolvedPath;
@@ -213,12 +215,13 @@ function resolvePath(baseDir, sourcePath, options)
  * resolve path (core function)
  * @param {string} baseDir base directory
  * @param {string} sourcePath source path
- * @param {ExtensionList} extensions extension list
- * @param {ExtensionMap} map extension mapping data
+ * @param {Options} options options
  * @returns {string | null} resolved path
  */
-function resolvePathCore(baseDir, sourcePath, extensions, map)
+function resolvePathCore(baseDir, sourcePath, options)
 {
+	const {srcExtensions, dstExtension, extensionsToKeep} = options;
+
 	const absolutePath = path.join(baseDir, sourcePath);
 	if(isFile(absolutePath))
 	{
@@ -226,7 +229,7 @@ function resolvePathCore(baseDir, sourcePath, extensions, map)
 		return sourcePath;
 	}
 
-	for(const extension of extensions)
+	for(const extension of srcExtensions)
 	{
 		const resolvedPath = `${absolutePath}${extension}`;
 		if(!isFile(resolvedPath))
@@ -235,14 +238,15 @@ function resolvePathCore(baseDir, sourcePath, extensions, map)
 			continue;
 		}
 
-		if(map.hasOwnProperty(extension))
+		if(extensionsToKeep.includes(extension))
 		{
-			// map extension
-			return path.relative(baseDir, `${absolutePath}${map[extension]}`);
+			// keep extension
+			return path.relative(baseDir, resolvedPath);
 		}
 		else
 		{
-			return path.relative(baseDir, resolvedPath);
+			// use ".js"
+			return path.relative(baseDir, `${absolutePath}${dstExtension}`);
 		}
 	}
 
