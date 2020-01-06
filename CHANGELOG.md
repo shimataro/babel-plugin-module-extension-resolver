@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* change options
+    * `srcExtensions`: renamed from `extensions`
+    * `dstExtension`: new
+    * `extensionsToKeep`: instead of `map`
+
 ## [0.2.0] - 2020-01-04
 
 ### Changed
