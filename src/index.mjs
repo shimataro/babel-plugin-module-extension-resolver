@@ -1,14 +1,9 @@
+// @ts-check
 import fs from "fs";
 import path from "path";
 
-/**
- * Babel plugin data
- * @typedef {Object} Babel
- */
-/**
- * Babel types
- * @typedef {Object} Types
- */
+import * as Babel from "@babel/core"; // eslint-disable-line no-unused-vars
+
 /**
  * options
  * @typedef {Object} Options
@@ -100,8 +95,8 @@ export default function moduleExtensionResolver(babel, options)
 
 /**
  * CallExpression() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {Babel.types} types types
+ * @param {Babel.NodePath<Babel.types.CallExpression>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -126,8 +121,8 @@ function handleCallExpression(types, declaration, filename, options)
 
 /**
  * ImportDeclaration() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {Babel.types} types types
+ * @param {Babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -139,8 +134,8 @@ function handleImportDeclaration(types, declaration, filename, options)
 
 /**
  * ExportDeclaration() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {Babel.types} types types
+ * @param {Babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -152,8 +147,8 @@ function handleExportDeclaration(types, declaration, filename, options)
 
 /**
  * replace source file name
- * @param {Types} types types
- * @param {NodePath} source source path
+ * @param {Babel.types} types types
+ * @param {Babel.NodePath | Babel.NodePath[]} source source path
  * @param {string} fileName processing file
  * @param {Options} options options
  * @returns {void}
