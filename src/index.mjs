@@ -1,14 +1,7 @@
+// @ts-check
 import fs from "fs";
 import path from "path";
 
-/**
- * Babel plugin data
- * @typedef {Object} Babel
- */
-/**
- * Babel types
- * @typedef {Object} Types
- */
 /**
  * options
  * @typedef {Object} Options
@@ -49,7 +42,7 @@ const DEFAULT_KEEPS = [".json"];
 
 /**
  * babel plugin
- * @param {Babel} babel babel plugin data
+ * @param {babel} babel babel plugin data
  * @param {Options} options plugin options
  * @returns {Object} plugin information
  */
@@ -100,8 +93,8 @@ export default function moduleExtensionResolver(babel, options)
 
 /**
  * CallExpression() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath<babel.types.CallExpression>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -126,8 +119,8 @@ function handleCallExpression(types, declaration, filename, options)
 
 /**
  * ImportDeclaration() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -139,8 +132,8 @@ function handleImportDeclaration(types, declaration, filename, options)
 
 /**
  * ExportDeclaration() handler
- * @param {Types} types types
- * @param {NodePath} declaration declaration
+ * @param {babel.types} types types
+ * @param {babel.NodePath} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -152,8 +145,8 @@ function handleExportDeclaration(types, declaration, filename, options)
 
 /**
  * replace source file name
- * @param {Types} types types
- * @param {NodePath} source source path
+ * @param {babel.types} types types
+ * @param {babel.NodePath | babel.NodePath[]} source source path
  * @param {string} fileName processing file
  * @param {Options} options options
  * @returns {void}
