@@ -14,6 +14,9 @@ Inspired by [babel-plugin-extension-resolver](https://www.npmjs.com/package/babe
 
 ## Examples
 
+By default, all extensions except `.json` is converted into `.js`.
+This behavior can be customized by [options](#options).
+
 ### JavaScript
 
 Directory structure:
@@ -61,6 +64,19 @@ root
 └ main.mjs
 ```
 
+`.babelrc`:
+
+```json
+{
+  "plugins": [
+    ["module-extension-resolver", {
+      "extensionsToKeep": [".mjs", ".json"]
+    }]
+  ]
+}
+
+```
+
 Input (`main.mjs`):
 
 ```javascript
@@ -105,8 +121,6 @@ import "./dir/lib.js";
 import "./dir/index.js";
 ```
 
-**NOTE:** `.ts` is replaced with `.js`. This behavior can be customized by options.
-
 For complete project, see below examples.
 
 * [ECMAScript with `@babel/preset-env`](./examples/babel)
@@ -133,13 +147,9 @@ With options:
 {
   "plugins": [
     ["module-extension-resolver", {
-      "extensions": [".js", ".cjs", ".mjs", ".es", ".es6", ".ts", ".node", ".json"],
-      "map": {
-        ".ts": ".js",
-        ".es": ".js",
-        ".es6": ".js",
-        ".node": ".js"
-      }
+      "srcExtensions": [".js", ".cjs", ".mjs", ".es", ".es6", ".ts", ".node", ".json"],
+      "dstExtension": ".js",
+      "extensionsToKeep": [".json"]
     }]
   ]
 }
@@ -147,9 +157,9 @@ With options:
 
 ## Options
 
-### `extensions`
+### `srcExtensions`
 
-extensions to resolve
+source extensions to resolve
 
 **defaults:**
 
@@ -166,19 +176,26 @@ extensions to resolve
 ]
 ```
 
-### `map`
+### `dstExtension`
 
-extension mapper
+destination extension
 
 **defaults:**
 
 ```json
-{
-  ".ts": ".js",
-  ".es": ".js",
-  ".es6": ".js",
-  ".node": ".js"
-}
+".js"
+```
+
+### `extensionsToKeep`
+
+extension to keep
+
+**defaults:**
+
+```json
+[
+  ".json"
+]
 ```
 
 ## Changelog
