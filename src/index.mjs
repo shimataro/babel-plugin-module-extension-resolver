@@ -2,43 +2,31 @@
 import fs from "fs";
 import path from "path";
 
+const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
+
 /**
  * options
  * @typedef {Object} Options
- * @property {OptionSrcExtensions} srcExtensions
- * @property {OptionDstExtension} dstExtension
- * @property {OptionExtensionsToKeep} extensionsToKeep
- */
-/**
- * source extensions
- * @typedef {string[]} OptionSrcExtensions
- */
-/**
- * destination extension
- * @typedef {string} OptionDstExtension
- */
-/**
- * extensions to keep
- * @typedef {string[]} OptionExtensionsToKeep
+ * @property {string[]} srcExtensions
+ * @property {string} dstExtension
+ * @property {string[]} extensionsToKeep
  */
 
-const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
-
-/** @type {OptionSrcExtensions} */
-const DEFAULT_SRC_EXTENSIONS = [
-	".js",
-	".cjs",
-	".mjs",
-	".es",
-	".es6",
-	".ts",
-	".node",
-	".json",
-];
-/** @type {OptionDstExtension} */
-const DEFAULT_DST_EXTENSION = ".js";
-/** @type {OptionExtensionsToKeep} */
-const DEFAULT_KEEPS = [".json"];
+/** @type {Options} */
+const defaultOptions = {
+	srcExtensions: [
+		".js",
+		".cjs",
+		".mjs",
+		".es",
+		".es6",
+		".ts",
+		".node",
+		".json",
+	],
+	dstExtension: ".js",
+	extensionsToKeep: [".json"],
+};
 
 /**
  * babel plugin
@@ -50,9 +38,7 @@ export default function moduleExtensionResolver(babel, options)
 {
 	const {types} = babel;
 	const normalizedOptions = {
-		srcExtensions: DEFAULT_SRC_EXTENSIONS,
-		dstExtension: DEFAULT_DST_EXTENSION,
-		extensionsToKeep: DEFAULT_KEEPS,
+		...defaultOptions,
 		...options,
 	};
 
