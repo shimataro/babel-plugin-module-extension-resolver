@@ -46,7 +46,7 @@ export default function moduleExtensionResolver(babel, options)
 		name: PLUGIN_NAME,
 		visitor: {
 			Program: {
-				enter(programPath, state)
+				enter: (programPath, state) =>
 				{
 					// filename = state.file.opts.filename;
 					const {
@@ -58,15 +58,15 @@ export default function moduleExtensionResolver(babel, options)
 					} = state;
 
 					programPath.traverse({
-						CallExpression(declaration)
+						CallExpression: (declaration) =>
 						{
 							handleCallExpression(types, declaration, filename, normalizedOptions);
 						},
-						ImportDeclaration(declaration)
+						ImportDeclaration: (declaration) =>
 						{
 							handleImportDeclaration(types, declaration, filename, normalizedOptions);
 						},
-						ExportDeclaration(declaration)
+						ExportDeclaration: (declaration) =>
 						{
 							handleExportDeclaration(types, declaration, filename, normalizedOptions);
 						},
