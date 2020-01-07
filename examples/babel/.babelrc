@@ -9,8 +9,8 @@
       ],
       "plugins": [
         ["module-extension-resolver", {
-		      "extensionsToKeep": [".mjs", ".json"]
-		    }]
+          "extensionsToKeep": [".mjs", ".json"]
+        }]
       ]
     }
   }
