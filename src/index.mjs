@@ -30,9 +30,9 @@ const defaultOptions = {
 
 /**
  * babel plugin
- * @param {babel} babel babel plugin data
- * @param {Options} options plugin options
- * @returns {Object} plugin information
+ * @param {babel} babel babel data
+ * @param {Options} options options
+ * @returns {babel.PluginObj} plugin object
  */
 export default function moduleExtensionResolver(babel, options)
 {
@@ -88,7 +88,11 @@ export default function moduleExtensionResolver(babel, options)
 function handleCallExpression(types, declaration, filename, options)
 {
 	const callee = declaration.get("callee");
-	if(!types.isIdentifier(callee) || callee.node.name !== "require")
+	if(!callee.isIdentifier())
+	{
+		return;
+	}
+	if(callee.node.name !== "require")
 	{
 		// do nothing if function name is not "require"
 		return;
@@ -139,7 +143,11 @@ function handleExportDeclaration(types, declaration, filename, options)
  */
 function replaceSource(types, source, fileName, options)
 {
-	if(!types.isStringLiteral(source))
+	if(Array.isArray(source))
+	{
+		return;
+	}
+	if(!source.isStringLiteral())
 	{
 		return;
 	}
