@@ -102,7 +102,7 @@ function handleCallExpression(types, declaration, filename, options)
 	const args = declaration.get("arguments");
 	if(args.length !== 1)
 	{
-		// do nothing if function doesn't have exactly 1 arguments
+		// do nothing if function doesn't have exactly 1 argument
 		return;
 	}
 
@@ -254,19 +254,21 @@ function resolvePathCore(baseDir, sourcePath, options)
  */
 function normalizePath(originalPath)
 {
+	let normalizedPath = originalPath;
+
 	// replace "\" with "/"
 	if(path.sep === "\\")
 	{
-		originalPath = originalPath.split(path.sep).join("/");
+		normalizedPath = normalizedPath.split(path.sep).join("/");
 	}
 
 	// prepend "./" if not relative format
-	if(originalPath[0] !== ".")
+	if(normalizedPath[0] !== ".")
 	{
-		originalPath = `./${originalPath}`;
+		normalizedPath = `./${normalizedPath}`;
 	}
 
-	return originalPath;
+	return normalizedPath;
 }
 
 /**
