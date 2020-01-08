@@ -119,7 +119,9 @@ function handleCallExpression(types, declaration, filename, options)
  */
 function handleImportDeclaration(types, declaration, filename, options)
 {
-	replaceSource(types, declaration.get("source"), filename, options);
+	const source = declaration.get("source");
+
+	replaceSource(types, source, filename, options);
 }
 
 /**
@@ -132,23 +134,25 @@ function handleImportDeclaration(types, declaration, filename, options)
  */
 function handleExportDeclaration(types, declaration, filename, options)
 {
-	replaceSource(types, declaration.get("source"), filename, options);
+	const source = declaration.get("source");
+	if(Array.isArray(source))
+	{
+		return;
+	}
+
+	replaceSource(types, source, filename, options);
 }
 
 /**
  * replace source file name
  * @param {babel.types} types types
- * @param {babel.NodePath | babel.NodePath[]} source source path
+ * @param {babel.NodePath} source source path
  * @param {string} fileName processing file
  * @param {Options} options options
  * @returns {void}
  */
 function replaceSource(types, source, fileName, options)
 {
-	if(Array.isArray(source))
-	{
-		return;
-	}
 	if(!source.isStringLiteral())
 	{
 		return;
