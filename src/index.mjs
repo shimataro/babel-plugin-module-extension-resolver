@@ -37,6 +37,8 @@ const defaultOptions = {
 export default function moduleExtensionResolver(babel, options)
 {
 	const {types} = babel;
+
+	/** @type {Options} */
 	const normalizedOptions = {
 		...defaultOptions,
 		...options,
@@ -110,7 +112,7 @@ function handleCallExpression(types, declaration, filename, options)
 /**
  * ImportDeclaration() handler
  * @param {babel.types} types types
- * @param {babel.NodePath} declaration declaration
+ * @param {babel.NodePath<babel.types.ImportDeclaration>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -123,7 +125,7 @@ function handleImportDeclaration(types, declaration, filename, options)
 /**
  * ExportDeclaration() handler
  * @param {babel.types} types types
- * @param {babel.NodePath} declaration declaration
+ * @param {babel.NodePath<babel.types.ExportDeclaration>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -248,19 +250,21 @@ function resolvePathCore(baseDir, sourcePath, options)
  */
 function normalizePath(originalPath)
 {
+	let normalizedPath = originalPath;
+
 	// replace "\" with "/"
 	if(path.sep === "\\")
 	{
-		originalPath = originalPath.split(path.sep).join("/");
+		normalizedPath = normalizedPath.split(path.sep).join("/");
 	}
 
 	// prepend "./" if not relative format
-	if(originalPath[0] !== ".")
+	if(normalizedPath[0] !== ".")
 	{
-		originalPath = `./${originalPath}`;
+		normalizedPath = `./${normalizedPath}`;
 	}
 
-	return originalPath;
+	return normalizedPath;
 }
 
 /**
