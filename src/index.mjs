@@ -250,19 +250,21 @@ function resolvePathCore(baseDir, sourcePath, options)
  */
 function normalizePath(originalPath)
 {
+	let normalizedPath = originalPath;
+
 	// replace "\" with "/"
 	if(path.sep === "\\")
 	{
-		originalPath = originalPath.split(path.sep).join("/");
+		normalizedPath = normalizedPath.split(path.sep).join("/");
 	}
 
 	// prepend "./" if not relative format
-	if(originalPath[0] !== ".")
+	if(normalizedPath[0] !== ".")
 	{
-		originalPath = `./${originalPath}`;
+		normalizedPath = `./${normalizedPath}`;
 	}
 
-	return originalPath;
+	return normalizedPath;
 }
 
 /**
