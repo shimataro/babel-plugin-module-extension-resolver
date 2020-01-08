@@ -100,7 +100,7 @@ function handleCallExpression(types, declaration, filename, options)
 	const args = declaration.get("arguments");
 	if(args.length !== 1)
 	{
-		// do nothing if function doesn't have exactly 1 arguments
+		// do nothing if function doesn't have exactly 1 argument
 		return;
 	}
 
