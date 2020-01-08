@@ -37,6 +37,8 @@ const defaultOptions = {
 export default function moduleExtensionResolver(babel, options)
 {
 	const {types} = babel;
+
+	/** @type {Options} */
 	const normalizedOptions = {
 		...defaultOptions,
 		...options,
@@ -110,7 +112,7 @@ function handleCallExpression(types, declaration, filename, options)
 /**
  * ImportDeclaration() handler
  * @param {babel.types} types types
- * @param {babel.NodePath} declaration declaration
+ * @param {babel.NodePath<babel.types.ImportDeclaration>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
@@ -123,7 +125,7 @@ function handleImportDeclaration(types, declaration, filename, options)
 /**
  * ExportDeclaration() handler
  * @param {babel.types} types types
- * @param {babel.NodePath} declaration declaration
+ * @param {babel.NodePath<babel.types.ExportDeclaration>} declaration declaration
  * @param {string} filename filename
  * @param {Options} options options
  * @returns {void}
