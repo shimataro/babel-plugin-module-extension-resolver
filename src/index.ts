@@ -44,7 +44,7 @@ const defaultOptions: Options = {
  * @param options options
  * @returns plugin object
  */
-export default function moduleExtensionResolver(babel: Babel, options: Options): B.PluginObj<PluginPass>
+export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 {
 	const {types} = babel;
 
@@ -86,7 +86,7 @@ export default function moduleExtensionResolver(babel: Babel, options: Options):
 			},
 		},
 	};
-}
+};
 
 /**
  * CallExpression() handler
