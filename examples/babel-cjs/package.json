@@ -9,10 +9,7 @@
     "npm": ">=5.7.0"
   },
   "scripts": {
-    "build": "run-p build:*",
-    "build:cjs": "npm run build-core",
-    "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
-    "build-core": "babel src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
+    "build": "babel src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
     "check-updates": "ncu -x @babel/preset-env"
   },
   "dependencies": {

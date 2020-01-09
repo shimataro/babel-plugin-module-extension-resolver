@@ -3,8 +3,8 @@
 on: push
 name: Examples
 jobs:
-  examples:
-    name: Build and run examples
+  examples-cjs:
+    name: Build and run examples (CommonJS)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -12,32 +12,93 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs:
+        nodejs-build:
+        - "6.9.0" # minimum version Babel works
+        - "8.0.0"
+        - "10.0.0"
+        - "12.0.0"
+        nodejs-run:
+        - "4.0.0"
+        - "6.0.0"
+        - "8.0.0"
+        - "10.0.0"
         - "12.0.0"
         example:
-        - "babel"
-        - "ts-babel"
-        - "ts-tsc"
+        - "babel-cjs"
+        - "ts-babel-cjs"
+        - "ts-tsc-cjs"
       fail-fast: false
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v1
-    - name: Install Node.js
+    - name: Install Node.js for build
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version: ${{ matrix.nodejs-build }}
     - name: Output versions
       run: |
         node -v
         npm -v
     - name: Install dependencies for plugin
-      run: npm ci
+      run: npm i
     - name: Build plugin
       run: npm run build
+    - name: Install Node.js for run
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs-run }}
     - name: Enter example directory
       run: cd ./examples/${{ matrix.example }}
     - name: Install dependencies for example
-      run: npm ci
+      run: npm i
+    - name: Build example
+      run: npm run build
+    - name: Run example
+      run: node ./dist/index.js
+  examples-esm:
+    name: Build and run examples (ES Modules)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        - macos-latest
+        - ubuntu-latest
+        nodejs-build:
+        - "6.9.0" # minimum version Babel works
+        - "8.0.0"
+        - "10.0.0"
+        - "12.0.0"
+        nodejs-run:
+        - "12.0.0" # minimum version {"type": "modules"} supports in package.json
+        example:
+        - "babel-esm"
+        - "ts-babel-esm"
+        - "ts-tsc-esm"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js for build
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs-build }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+    - name: Install dependencies for plugin
+      run: npm i
+    - name: Build plugin
+      run: npm run build
+    - name: Install Node.js for run
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs-run }}
+    - name: Enter example directory
+      run: cd ./examples/${{ matrix.example }}
+    - name: Install dependencies for example
+      run: npm i
     - name: Build example
       run: npm run build
     - name: Run example

@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    ["module-extension-resolver"]
+  ]
+}
