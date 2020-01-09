@@ -1,19 +1,29 @@
-// @ts-check
 import fs from "fs";
 import path from "path";
 
+import * as B from "@babel/core";
+
 const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
 
-/**
- * options
- * @typedef {Object} Options
- * @property {string[]} srcExtensions
- * @property {string} dstExtension
- * @property {string[]} extensionsToKeep
- */
+// Babel types
+type Babel = typeof B;
+type BabelTypes = typeof B.types;
+type PluginPass = {
+	file: {
+		opts: {
+			filename: string;
+		};
+	};
+};
 
-/** @type {Options} */
-const defaultOptions = {
+interface Options
+{
+	srcExtensions: string[];
+	dstExtension: string;
+	extensionsToKeep: string[];
+}
+
+const defaultOptions: Options = {
 	srcExtensions: [
 		".js",
 		".cjs",
@@ -30,16 +40,14 @@ const defaultOptions = {
 
 /**
  * babel plugin
- * @param {babel} babel babel data
- * @param {Options} options options
- * @returns {babel.PluginObj} plugin object
+ * @param babel babel data
+ * @param options options
+ * @returns plugin object
  */
-export default function moduleExtensionResolver(babel, options)
+export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 {
 	const {types} = babel;
-
-	/** @type {Options} */
-	const normalizedOptions = {
+	const normalizedOptions: Options = {
 		...defaultOptions,
 		...options,
 	};
@@ -77,17 +85,16 @@ export default function moduleExtensionResolver(babel, options)
 			},
 		},
 	};
-}
+};
 
 /**
  * CallExpression() handler
- * @param {babel.types} types types
- * @param {babel.NodePath<babel.types.CallExpression>} declaration declaration
- * @param {string} filename filename
- * @param {Options} options options
- * @returns {void}
+ * @param types types
+ * @param declaration declaration
+ * @param filename filename
+ * @param options options
  */
-function handleCallExpression(types, declaration, filename, options)
+function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types.CallExpression>, filename: string, options: Options): void
 {
 	const callee = declaration.get("callee");
 	if(!callee.isIdentifier())
@@ -111,13 +118,12 @@ function handleCallExpression(types, declaration, filename, options)
 
 /**
  * ImportDeclaration() handler
- * @param {babel.types} types types
- * @param {babel.NodePath<babel.types.ImportDeclaration>} declaration declaration
- * @param {string} filename filename
- * @param {Options} options options
- * @returns {void}
+ * @param types types
+ * @param declaration declaration
+ * @param filename filename
+ * @param options options
  */
-function handleImportDeclaration(types, declaration, filename, options)
+function handleImportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ImportDeclaration>, filename: string, options: Options): void
 {
 	const source = declaration.get("source");
 
@@ -126,13 +132,12 @@ function handleImportDeclaration(types, declaration, filename, options)
 
 /**
  * ExportDeclaration() handler
- * @param {babel.types} types types
- * @param {babel.NodePath<babel.types.ExportDeclaration>} declaration declaration
- * @param {string} filename filename
- * @param {Options} options options
- * @returns {void}
+ * @param types types
+ * @param declaration declaration
+ * @param filename filename
+ * @param options options
  */
-function handleExportDeclaration(types, declaration, filename, options)
+function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ExportDeclaration>, filename: string, options: Options): void
 {
 	const source = declaration.get("source");
 	if(Array.isArray(source))
@@ -145,13 +150,12 @@ function handleExportDeclaration(types, declaration, filename, options)
 
 /**
  * replace source file name
- * @param {babel.types} types types
- * @param {babel.NodePath} source source path
- * @param {string} fileName processing file
- * @param {Options} options options
- * @returns {void}
+ * @param types types
+ * @param source source path
+ * @param fileName processing file
+ * @param options options
  */
-function replaceSource(types, source, fileName, options)
+function replaceSource(types: BabelTypes, source: B.NodePath, fileName: string, options: Options): void
 {
 	if(!source.isStringLiteral())
 	{
@@ -175,12 +179,12 @@ function replaceSource(types, source, fileName, options)
 
 /**
  * resolve path
- * @param {string} baseDir base directory
- * @param {string} sourcePath source path
- * @param {Options} options options
- * @returns {string} resolved path
+ * @param baseDir base directory
+ * @param sourcePath source path
+ * @param options options
+ * @returns resolved path
  */
-function resolvePath(baseDir, sourcePath, options)
+function resolvePath(baseDir: string, sourcePath: string, options: Options): string
 {
 	{
 		const resolvedPath = resolvePathCore(baseDir, sourcePath, options);
@@ -206,12 +210,12 @@ function resolvePath(baseDir, sourcePath, options)
 
 /**
  * resolve path (core function)
- * @param {string} baseDir base directory
- * @param {string} sourcePath source path
- * @param {Options} options options
- * @returns {string | null} resolved path
+ * @param baseDir base directory
+ * @param sourcePath source path
+ * @param options options
+ * @returns resolved path
  */
-function resolvePathCore(baseDir, sourcePath, options)
+function resolvePathCore(baseDir: string, sourcePath: string, options: Options): string | null
 {
 	const {srcExtensions, dstExtension, extensionsToKeep} = options;
 
@@ -249,10 +253,10 @@ function resolvePathCore(baseDir, sourcePath, options)
 
 /**
  * normalize path
- * @param {string} originalPath path to be normalized
- * @returns {string} normalized path
+ * @param originalPath path to be normalized
+ * @returns normalized path
  */
-function normalizePath(originalPath)
+function normalizePath(originalPath: string): string
 {
 	let normalizedPath = originalPath;
 
@@ -273,10 +277,10 @@ function normalizePath(originalPath)
 
 /**
  * is pathName file?
- * @param {string} pathName pathname to check
- * @returns {boolean} Yes/No
+ * @param pathName pathname to check
+ * @returns Yes/No
  */
-function isFile(pathName)
+function isFile(pathName: string): boolean
 {
 	try
 	{
@@ -290,10 +294,10 @@ function isFile(pathName)
 
 /**
  * is pathName directory?
- * @param {string} pathName pathname to check
- * @returns {boolean} Yes/No
+ * @param pathName pathname to check
+ * @returns Yes/No
  */
-function isDirectory(pathName)
+function isDirectory(pathName: string): boolean
 {
 	try
 	{
