@@ -47,7 +47,6 @@ const defaultOptions: Options = {
 export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 {
 	const {types} = babel;
-
 	const normalizedOptions: Options = {
 		...defaultOptions,
 		...options,
