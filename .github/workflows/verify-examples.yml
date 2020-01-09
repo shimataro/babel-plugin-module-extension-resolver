@@ -47,14 +47,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-run }}
-    - name: Enter example directory
-      run: cd ./examples/${{ matrix.example }}
     - name: Install dependencies for example
-      run: npm i
+      run: cd ./examples/${{ matrix.example }}; npm i
     - name: Build example
-      run: npm run build
+      run: cd ./examples/${{ matrix.example }}; npm run build
     - name: Run example
-      run: node ./dist/index.js
+      run: cd ./examples/${{ matrix.example }}; node ./dist/index.js
   examples-esm:
     name: Build and run examples (ES Modules)
     runs-on: ${{ matrix.os }}
@@ -95,11 +93,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-run }}
-    - name: Enter example directory
-      run: cd ./examples/${{ matrix.example }}
     - name: Install dependencies for example
-      run: npm i
+      run: cd ./examples/${{ matrix.example }}; npm i
     - name: Build example
-      run: npm run build
+      run: cd ./examples/${{ matrix.example }}; npm run build
     - name: Run example
-      run: node --experimental-modules ./dist/index.js
+      run: cd ./examples/${{ matrix.example }}; node --experimental-modules ./dist/index.js
