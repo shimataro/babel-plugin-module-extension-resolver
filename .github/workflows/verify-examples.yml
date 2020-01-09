@@ -43,14 +43,18 @@ jobs:
       run: npm i
     - name: Build plugin
       run: npm run build
-    - name: Install Node.js for run
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs-run }}
     - name: Install dependencies for example
       run: cd ./examples/${{ matrix.example }}; npm i
     - name: Build example
       run: cd ./examples/${{ matrix.example }}; npm run build
+    - name: Install Node.js for run
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs-run }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
     - name: Run example
       run: cd ./examples/${{ matrix.example }}; node ./dist/index.js
   examples-esm:
@@ -89,13 +93,17 @@ jobs:
       run: npm i
     - name: Build plugin
       run: npm run build
-    - name: Install Node.js for run
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs-run }}
     - name: Install dependencies for example
       run: cd ./examples/${{ matrix.example }}; npm i
     - name: Build example
       run: cd ./examples/${{ matrix.example }}; npm run build
+    - name: Install Node.js for run
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs-run }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
     - name: Run example
       run: cd ./examples/${{ matrix.example }}; node --experimental-modules ./dist/index.js
