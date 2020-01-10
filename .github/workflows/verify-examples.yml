@@ -45,8 +45,12 @@ jobs:
       run: npm run build
     - name: Install dependencies for example
       run: cd ./examples/${{ matrix.example }}; npm i
+    - name: Print install result
+      run: ls ./examples/${{ matrix.example }}
     - name: Build example
       run: cd ./examples/${{ matrix.example }}; npm run build
+    - name: Print build result
+      run: ls ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
@@ -95,8 +99,12 @@ jobs:
       run: npm run build
     - name: Install dependencies for example
       run: cd ./examples/${{ matrix.example }}; npm i
+    - name: Print install result
+      run: ls ./examples/${{ matrix.example }}
     - name: Build example
       run: cd ./examples/${{ matrix.example }}; npm run build
+    - name: Print build result
+      run: ls ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
