@@ -60,7 +60,7 @@ jobs:
         node -v
         npm -v
     - name: Run example
-      run: cd ./examples/${{ matrix.example }}; node ./dist/index.js
+      run: node ./examples/${{ matrix.example }}/dist/index.js
   examples-esm:
     name: Build and run examples (ES Modules)
     runs-on: ${{ matrix.os }}
@@ -114,4 +114,4 @@ jobs:
         node -v
         npm -v
     - name: Run example
-      run: cd ./examples/${{ matrix.example }}; node --experimental-modules ./dist/index.js
+      run: node --experimental-modules ./examples/${{ matrix.example }}/dist/index.js
