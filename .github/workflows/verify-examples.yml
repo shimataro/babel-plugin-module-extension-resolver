@@ -44,9 +44,9 @@ jobs:
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
-      run: cd ./examples/${{ matrix.example }}; npm i
+      run: npm i --prefix ./examples/${{ matrix.example }}
     - name: Build example
-      run: cd ./examples/${{ matrix.example }}; npm run build
+      run: npm run build --prefix ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
@@ -56,7 +56,7 @@ jobs:
         node -v
         npm -v
     - name: Run example
-      run: cd ./examples/${{ matrix.example }}; node ./dist/index.js
+      run: node ./examples/${{ matrix.example }}/dist/index.js
   examples-esm:
     name: Build and run examples (ES Modules)
     runs-on: ${{ matrix.os }}
@@ -94,9 +94,9 @@ jobs:
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
-      run: cd ./examples/${{ matrix.example }}; npm i
+      run: npm i --prefix ./examples/${{ matrix.example }}
     - name: Build example
-      run: cd ./examples/${{ matrix.example }}; npm run build
+      run: npm run build --prefix ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
@@ -106,4 +106,4 @@ jobs:
         node -v
         npm -v
     - name: Run example
-      run: cd ./examples/${{ matrix.example }}; node --experimental-modules ./dist/index.js
+      run: node --experimental-modules ./examples/${{ matrix.example }}/dist/index.js
