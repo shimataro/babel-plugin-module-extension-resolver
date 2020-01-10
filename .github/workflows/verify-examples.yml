@@ -35,7 +35,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
-    - name: Output versions
+    - name: Print versions
       run: |
         node -v
         npm -v
@@ -51,7 +51,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-run }}
-    - name: Output versions
+    - name: Print versions
       run: |
         node -v
         npm -v
@@ -85,7 +85,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
-    - name: Output versions
+    - name: Print versions
       run: |
         node -v
         npm -v
@@ -101,7 +101,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-run }}
-    - name: Output versions
+    - name: Print versions
       run: |
         node -v
         npm -v
