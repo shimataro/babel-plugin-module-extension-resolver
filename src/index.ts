@@ -190,6 +190,7 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 		const resolvedPath = resolvePathCore(baseDir, sourcePath, options);
 		if(resolvedPath !== null)
 		{
+			// resolved!
 			return resolvedPath;
 		}
 	}
@@ -197,9 +198,11 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 	const absolutePath = path.join(baseDir, sourcePath);
 	if(isDirectory(absolutePath))
 	{
+		// find index file if sourcePath is a directory
 		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), options);
 		if(resolvedPath !== null)
 		{
+			// resolved!
 			return resolvedPath;
 		}
 	}
@@ -242,7 +245,7 @@ function resolvePathCore(baseDir: string, sourcePath: string, options: Options):
 		}
 		else
 		{
-			// use ".js"
+			// use dstExtension
 			return path.relative(baseDir, `${absolutePath}${dstExtension}`);
 		}
 	}
