@@ -14,16 +14,8 @@ npm ci
 npm run build
 ```
 
-This command generates two types of file:
-
-* `./dist/*.js`: for CommonJS
-* `./dist/*.mjs`: for ES Modules
-
 ## Run
 
 ```bash
-# for CommonJS
-node ./dist/index.js
-# for ES Modules
 node --experimental-modules ./dist/index.mjs
 ```

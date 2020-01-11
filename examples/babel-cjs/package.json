@@ -1,19 +1,16 @@
 {
-  "name": "example-ts-tsc",
+  "name": "example-babel",
   "version": "0.0.0",
   "author": "shimataro",
   "license": "MIT",
-  "type": "module",
   "private": true,
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=4.0.0",
     "npm": ">=5.7.0"
   },
   "scripts": {
-    "build": "run-s build:*",
-    "build:1-ts": "tsc",
-    "build:2-babel": "babel ./dist --out-dir ./dist",
-    "check-updates": "ncu"
+    "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
+    "check-updates": "ncu -x @babel/preset-env"
   },
   "dependencies": {
     "core-js": "3.6.1"
@@ -21,11 +18,12 @@
   "devDependencies": {
     "@babel/cli": "7.7.7",
     "@babel/core": "7.7.7",
+    "@babel/preset-env": "7.7.5",
     "@types/core-js": "2.5.2",
     "@types/node": "13.1.4",
     "babel-plugin-module-extension-resolver": "file:../..",
+    "cross-env": "6.0.3",
     "npm-check-updates": "4.0.1",
-    "npm-run-all": "4.1.5",
-    "typescript": "3.7.4"
+    "npm-run-all": "4.1.5"
   }
 }
