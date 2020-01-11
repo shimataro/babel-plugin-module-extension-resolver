@@ -9,7 +9,7 @@
     "npm": ">=5.7.0"
   },
   "scripts": {
-    "build": "babel ./src --out-dir ./dist",
+    "build": "babel ./src --out-dir ./dist --extensions '.ts'",
     "check-updates": "ncu -x @babel/preset-env"
   },
   "dependencies": {
