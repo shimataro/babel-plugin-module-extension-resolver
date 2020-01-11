@@ -12,20 +12,29 @@ cd $(dirname ${0})/..
 git checkout develop || exit 1
 git checkout -b ${BRANCH} || exit 1
 
-# check updates
-npm run check-updates -- -u || exit 1
+for WORK in . ./examples/*;
+do
+	pushd ${WORK}
 
-# re-install packages
-rm -rf npm-shrinkwrap.json node_modules || exit 1
-npm i || exit 1
+	# check updates
+	npm run check-updates -- -u || exit 1
 
-# test
-npm run build || exit 1
-npm run verify || exit 1
+	# re-install packages
+	rm -rf npm-shrinkwrap.json node_modules || exit 1
+	npm i || exit 1
+
+	# test
+	npm run build || exit 1
+	npm run verify || exit 1
+
+	# add to git
+	npm shrinkwrap || exit 1
+	git add package.json npm-shrinkwrap.json || exit 1
+
+	popd
+done
 
 # commit
-npm shrinkwrap || exit 1
-git add package.json npm-shrinkwrap.json || exit 1
 git commit -m "update dependencies" || exit 1
 
 # finished!

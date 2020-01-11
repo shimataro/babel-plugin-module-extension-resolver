@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
-    "check-updates": "ncu -x @babel/preset-env"
+    "check-updates": "ncu -x @babel/preset-env",
+	"verify": "true"
   },
   "dependencies": {
     "core-js": "3.6.1"

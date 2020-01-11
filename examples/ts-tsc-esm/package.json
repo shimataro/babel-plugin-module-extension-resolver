@@ -12,7 +12,8 @@
     "build": "run-s build:*",
     "build:1-ts": "tsc",
     "build:2-babel": "babel ./intermediate --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
-    "check-updates": "ncu"
+    "check-updates": "ncu",
+	"verify": "true"
   },
   "dependencies": {
     "core-js": "3.6.1"
