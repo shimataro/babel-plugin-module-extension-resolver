@@ -77,7 +77,6 @@ src
     }]
   ]
 }
-
 ```
 
 Input (`main.mjs`):
