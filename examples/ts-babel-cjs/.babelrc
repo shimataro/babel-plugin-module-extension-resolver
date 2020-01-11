@@ -4,6 +4,8 @@
     ["@babel/preset-typescript"]
   ],
   "plugins": [
-    ["module-extension-resolver"]
+    ["module-extension-resolver", {
+      "extensionsToKeep": [".ts", ".json"]
+    }]
   ]
 }
