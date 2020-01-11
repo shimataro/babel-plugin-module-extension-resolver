@@ -242,7 +242,7 @@ function resolvePathCore(baseDir: string, sourcePath: string, options: Options):
 		}
 		else
 		{
-			// use ".js"
+			// use dstExtension
 			return path.relative(baseDir, `${absolutePath}${dstExtension}`);
 		}
 	}
