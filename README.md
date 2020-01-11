@@ -123,9 +123,11 @@ import "./dir/index.js";
 
 For complete project, see below examples.
 
-* [ECMAScript with `@babel/preset-env`](./examples/babel)
-* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
-* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
+|Language|CommonJS|ES Modules|
+|---|---|---|
+|ECMAScript with `@babel/preset-env`|[babel-cjs](./examples/babel-cjs)|[babel-esm](./examples/babel-esm)|
+|TypeScript with `@babel/preset-typescript`|[ts-babel-cjs](./examples/ts-babel-cjs)|[ts-babel-esm](./examples/ts-babel-esm)|
+|TypeScript with `tsc` and Babel|[ts-tsc-cjs](./examples/ts-tsc-cjs)|[ts-tsc-esm](./examples/ts-tsc-esm)|
 
 ## Install
 
