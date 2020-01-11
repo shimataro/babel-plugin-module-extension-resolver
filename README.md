@@ -22,7 +22,7 @@ This behavior can be customized by [options](#options).
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.js
 │ └ lib.js
@@ -57,7 +57,7 @@ require("dir");
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.mjs
 │ └ lib.mjs
@@ -68,13 +68,15 @@ root
 
 ```json
 {
+  "presets": [
+    ["@babel/preset-env", {"modules": false}]
+  ],
   "plugins": [
     ["module-extension-resolver", {
       "extensionsToKeep": [".mjs", ".json"]
     }]
   ]
 }
-
 ```
 
 Input (`main.mjs`):
@@ -84,6 +86,12 @@ import "./dir/lib";
 import "./dir";
 
 export * from "./dir";
+```
+
+Run:
+
+```bash
+babel src --keep-file-extension
 ```
 
 Output:
@@ -100,7 +108,7 @@ export * from "./dir/index.mjs";
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.ts
 │ └ lib.ts
@@ -123,9 +131,11 @@ import "./dir/index.js";
 
 For complete project, see below examples.
 
-* [ECMAScript with `@babel/preset-env`](./examples/babel)
-* [TypeScript with `@babel/preset-typescript`](./examples/ts-babel)
-* [TypeScript with `tsc` and Babel](./examples/ts-tsc)
+|Language|CommonJS|ES Modules|
+|---|---|---|
+|ECMAScript with `@babel/preset-env`|[babel-cjs](./examples/babel-cjs)|[babel-esm](./examples/babel-esm)|
+|TypeScript with `@babel/preset-typescript`|[ts-babel-cjs](./examples/ts-babel-cjs)|[ts-babel-esm](./examples/ts-babel-esm)|
+|TypeScript with `tsc` and Babel|[ts-tsc-cjs](./examples/ts-tsc-cjs)|[ts-tsc-esm](./examples/ts-tsc-esm)|
 
 ## Install
 
