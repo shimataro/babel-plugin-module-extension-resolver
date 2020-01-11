@@ -1,13 +1,12 @@
 {
-  "name": "example-ts-tsc",
+  "name": "example-ts-tsc-esm",
   "version": "0.0.0",
   "author": "shimataro",
   "license": "MIT",
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=5.7.0"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "build": "run-s build:*",
