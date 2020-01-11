@@ -6,18 +6,13 @@ jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        nodejs:
-        - 12
-      fail-fast: false
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v1
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version: 12
     - name: Output versions
       run: |
         node -v
