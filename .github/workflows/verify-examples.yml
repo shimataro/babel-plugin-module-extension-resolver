@@ -13,10 +13,10 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs-build:
-        - "6.9.0" # minimum version Babel works
-        - "8.0.0"
-        - "10.0.0"
-        - "12.0.0"
+#        - "6.9.0" # minimum version Babel works
+        - "8.1.0" # 8.0.0 (npm v5.0.0) causes "finishInflating is not a function" on "npm i" for examples; cf. https://github.com/strongloop/loopback/issues/3427
+#        - "10.0.0"
+#        - "12.0.0"
         nodejs-run:
         - "4.0.0"
         - "6.0.0"
@@ -74,10 +74,10 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs-build:
-        - "6.9.0" # minimum version Babel works
-        - "8.0.0"
-        - "10.0.0"
-        - "12.0.0"
+#        - "6.9.0" # minimum version Babel works
+        - "8.1.0" # 8.0.0 (npm v5.0.0) causes "finishInflating is not a function" on "npm i" for examples; cf. https://github.com/strongloop/loopback/issues/3427
+#        - "10.0.0"
+#        - "12.0.0"
         nodejs-run:
         - "12.0.0" # minimum version {"type": "modules"} supports in package.json
         example:
