@@ -198,6 +198,7 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 	const absolutePath = path.join(baseDir, sourcePath);
 	if(isDirectory(absolutePath))
 	{
+		// find index file if sourcePath is a directory
 		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), options);
 		if(resolvedPath !== null)
 		{
