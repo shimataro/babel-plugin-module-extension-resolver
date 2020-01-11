@@ -23,7 +23,7 @@ jobs:
         - "ts-babel-cjs"
         - "ts-tsc-cjs"
         exclude:
-        - os: windows-latest
+        - os: windows-latest # not work "babel --extension '.ts'" on Windows?
           example: "ts-babel-cjs"
       fail-fast: false
     steps:
@@ -78,7 +78,7 @@ jobs:
         - "ts-babel-esm"
         - "ts-tsc-esm"
         exclude:
-        - os: windows-latest
+        - os: windows-latest # not work "babel --extension '.ts'" on Windows?
           example: "ts-babel-esm"
       fail-fast: false
     steps:
