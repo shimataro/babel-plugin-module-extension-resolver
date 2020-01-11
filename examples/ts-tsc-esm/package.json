@@ -1,5 +1,5 @@
 {
-  "name": "example-ts-tsc",
+  "name": "example-ts-tsc-esm",
   "version": "0.0.0",
   "author": "shimataro",
   "license": "MIT",
