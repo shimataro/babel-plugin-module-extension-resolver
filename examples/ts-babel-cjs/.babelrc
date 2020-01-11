@@ -1,6 +1,7 @@
 {
   "presets": [
-    ["@babel/preset-env", {"targets": {"node": "4.0.0"}, "useBuiltIns": "usage", "corejs": 3}]
+    ["@babel/preset-env", {"targets": {"node": "4.0.0"}, "useBuiltIns": "usage", "corejs": 3}],
+    ["@babel/preset-typescript"]
   ],
   "plugins": [
     ["module-extension-resolver"]
