@@ -13,16 +13,16 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs-build:
-#        - "6.9.0" # minimum version Babel works
+        - "6.9.0" # minimum version Babel works
         - "8.0.0"
-#        - "10.0.0"
-#        - "12.0.0"
+        - "10.0.0"
+        - "12.0.0"
         nodejs-run:
         - "4.0.0"
-#        - "6.0.0"
-#        - "8.0.0"
-#        - "10.0.0"
-#        - "12.0.0"
+        - "6.0.0"
+        - "8.0.0"
+        - "10.0.0"
+        - "12.0.0"
         example:
         - "babel-cjs"
         - "ts-babel-cjs"
@@ -74,9 +74,9 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs-build:
-#        - "6.9.0" # minimum version Babel works
-#        - "8.0.0"
-#        - "10.0.0"
+        - "6.9.0" # minimum version Babel works
+        - "8.0.0"
+        - "10.0.0"
         - "12.0.0"
         nodejs-run:
         - "12.0.0" # minimum version {"type": "modules"} supports in package.json
