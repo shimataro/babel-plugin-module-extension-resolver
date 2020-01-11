@@ -22,7 +22,7 @@ This behavior can be customized by [options](#options).
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.js
 │ └ lib.js
@@ -57,7 +57,7 @@ require("dir");
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.mjs
 │ └ lib.mjs
@@ -68,6 +68,9 @@ root
 
 ```json
 {
+  "presets": [
+    ["@babel/preset-env", {"modules": false}]
+  ],
   "plugins": [
     ["module-extension-resolver", {
       "extensionsToKeep": [".mjs", ".json"]
@@ -86,6 +89,12 @@ import "./dir";
 export * from "./dir";
 ```
 
+Run:
+
+```bash
+babel src --keep-file-extension
+```
+
 Output:
 
 ```javascript
@@ -100,7 +109,7 @@ export * from "./dir/index.mjs";
 Directory structure:
 
 ```text
-root
+src
 ├ dir
 │ ├ index.ts
 │ └ lib.ts
