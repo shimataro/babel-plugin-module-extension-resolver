@@ -11,10 +11,10 @@
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
     "check-updates": "ncu -x @babel/preset-env",
-	"verify": "true"
+    "verify": "true"
   },
   "dependencies": {
-    "core-js": "3.6.1"
+    "core-js": "3.6.3"
   },
   "devDependencies": {
     "@babel/cli": "7.7.7",
@@ -22,7 +22,7 @@
     "@babel/preset-env": "7.7.5",
     "@babel/preset-typescript": "7.7.7",
     "@types/core-js": "2.5.2",
-    "@types/node": "13.1.4",
+    "@types/node": "13.1.6",
     "babel-plugin-module-extension-resolver": "file:../..",
     "npm-check-updates": "4.0.1"
   }
