@@ -190,6 +190,7 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 		const resolvedPath = resolvePathCore(baseDir, sourcePath, options);
 		if(resolvedPath !== null)
 		{
+			// resolved!
 			return resolvedPath;
 		}
 	}
@@ -200,6 +201,7 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), options);
 		if(resolvedPath !== null)
 		{
+			// resolved!
 			return resolvedPath;
 		}
 	}
