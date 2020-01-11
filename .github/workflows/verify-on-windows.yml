@@ -9,9 +9,9 @@ jobs:
     strategy:
       matrix:
         nodejs:
-        - 8
-        - 10
-        - 12
+        - "8.0.0"
+        - "10.0.0"
+        - "12.0.0"
       fail-fast: false
     steps:
     - name: Turn off auto-crlf
