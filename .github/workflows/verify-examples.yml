@@ -1,7 +1,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Examples
+name: Examples check
 jobs:
   examples-cjs:
     name: Build and run examples (CommonJS)
