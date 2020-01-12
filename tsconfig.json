@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "esModuleInterop": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    "noImplicitAny": true,
     "outDir": "dist",
     "removeComments": true,
     "sourceMap": true,
