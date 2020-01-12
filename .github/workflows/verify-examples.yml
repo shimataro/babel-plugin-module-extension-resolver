@@ -23,7 +23,7 @@ jobs:
         - "ts-babel-cjs"
         - "ts-tsc-cjs"
         exclude:
-        - os: windows-latest # not work "babel --extension '.ts'" on Windows?
+        - os: windows-latest # not work "babel --extensions '.ts'" on Windows?
           example: "ts-babel-cjs"
       fail-fast: false
     steps:
@@ -44,13 +44,9 @@ jobs:
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
-      run: |
-        cd ./examples/${{ matrix.example }}
-        npm ci
+      run: npm ci --prefix ./examples/${{ matrix.example }}
     - name: Build example
-      run: |
-        cd ./examples/${{ matrix.example }}
-        npm run build
+      run: npm run build --prefix ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
@@ -80,7 +76,7 @@ jobs:
         - "ts-babel-esm"
         - "ts-tsc-esm"
         exclude:
-        - os: windows-latest # not work "babel --extension '.ts'" on Windows?
+        - os: windows-latest # not work "babel --extensions '.ts'" on Windows?
           example: "ts-babel-esm"
       fail-fast: false
     steps:
@@ -101,13 +97,9 @@ jobs:
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
-      run: |
-        cd ./examples/${{ matrix.example }}
-        npm ci
+      run: npm ci --prefix ./examples/${{ matrix.example }}
     - name: Build example
-      run: |
-        cd ./examples/${{ matrix.example }}
-        npm run build
+      run: npm run build --prefix ./examples/${{ matrix.example }}
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
