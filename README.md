@@ -3,7 +3,6 @@
 [![Build Status (Windows)][image-build-windows]][link-build-windows]
 [![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
-[![Syntax check][image-syntax-check]][link-syntax-check]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
 [![License][image-license]][link-license]
@@ -218,8 +217,6 @@ See [CHANGELOG.md](CHANGELOG.md).
 [link-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver
 [image-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Linux/badge.svg
 [link-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-syntax-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Syntax%20check/badge.svg
-[link-syntax-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver
 [image-release]: https://img.shields.io/github/release/shimataro/babel-plugin-module-extension-resolver.svg
 [link-release]: https://github.com/shimataro/babel-plugin-module-extension-resolver/releases
 [image-engine]: https://img.shields.io/node/v/babel-plugin-module-extension-resolver.svg
