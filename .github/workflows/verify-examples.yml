@@ -33,18 +33,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
+    - name: update npm
+      run: npm i -g npm
     - name: Print versions
       run: |
         node -v
         npm -v
     - name: Install dependencies for plugin
-      run: npm i
+      run: npm ci
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
       run: |
         cd ./examples/${{ matrix.example }}
-        npm i
+        npm ci
     - name: Build example
       run: |
         cd ./examples/${{ matrix.example }}
@@ -88,18 +90,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
+    - name: update npm
+      run: npm i -g npm
     - name: Print versions
       run: |
         node -v
         npm -v
     - name: Install dependencies for plugin
-      run: npm i
+      run: npm ci
     - name: Build plugin
       run: npm run build
     - name: Install dependencies for example
       run: |
         cd ./examples/${{ matrix.example }}
-        npm i
+        npm ci
     - name: Build example
       run: |
         cd ./examples/${{ matrix.example }}
