@@ -88,7 +88,7 @@ export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 };
 
 /**
- * CallExpression() handler
+ * CallExpression() handler; handle "require()" function
  * @param types types
  * @param declaration declaration
  * @param filename filename
@@ -117,7 +117,7 @@ function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types
 }
 
 /**
- * ImportDeclaration() handler
+ * ImportDeclaration() handler; handle "import" statement
  * @param types types
  * @param declaration declaration
  * @param filename filename
@@ -131,7 +131,7 @@ function handleImportDeclaration(types: BabelTypes, declaration: B.NodePath<B.ty
 }
 
 /**
- * ExportDeclaration() handler
+ * ExportDeclaration() handler; handle "export from" statement
  * @param types types
  * @param declaration declaration
  * @param filename filename
