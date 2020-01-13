@@ -186,20 +186,9 @@ function replaceSource(types: BabelTypes, source: B.NodePath, fileName: string, 
  */
 function resolvePath(baseDir: string, sourcePath: string, options: Options): string
 {
+	for(const title of [sourcePath, path.join(sourcePath, "index")])
 	{
-		const resolvedPath = resolvePathCore(baseDir, sourcePath, options);
-		if(resolvedPath !== null)
-		{
-			// resolved!
-			return resolvedPath;
-		}
-	}
-
-	const absolutePath = path.join(baseDir, sourcePath);
-	if(isDirectory(absolutePath))
-	{
-		// find index file if sourcePath is a directory
-		const resolvedPath = resolvePathCore(baseDir, path.join(sourcePath, "index"), options);
+		const resolvedPath = resolveExtension(baseDir, title, options);
 		if(resolvedPath !== null)
 		{
 			// resolved!
@@ -212,13 +201,13 @@ function resolvePath(baseDir: string, sourcePath: string, options: Options): str
 }
 
 /**
- * resolve path (core function)
+ * resolve extension
  * @param baseDir base directory
  * @param sourcePath source path
  * @param options options
  * @returns resolved path
  */
-function resolvePathCore(baseDir: string, sourcePath: string, options: Options): string | null
+function resolveExtension(baseDir: string, sourcePath: string, options: Options): string | null
 {
 	const {srcExtensions, dstExtension, extensionsToKeep} = options;
 
@@ -288,23 +277,6 @@ function isFile(pathName: string): boolean
 	try
 	{
 		return fs.statSync(pathName).isFile();
-	}
-	catch(err)
-	{
-		return false;
-	}
-}
-
-/**
- * is pathName directory?
- * @param pathName pathname to check
- * @returns Yes/No
- */
-function isDirectory(pathName: string): boolean
-{
-	try
-	{
-		return fs.statSync(pathName).isDirectory();
 	}
 	catch(err)
 	{
