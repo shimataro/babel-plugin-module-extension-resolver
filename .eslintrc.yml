@@ -91,7 +91,19 @@ rules: # https://eslint.org/docs/rules/
   init-declarations: error
   jsx-quotes: error
   key-spacing: error
-  keyword-spacing: 'off'
+  keyword-spacing:
+  - error
+  - overrides:
+      if:
+        after: false
+      for:
+        after: false
+      while:
+        after: false
+      catch:
+        after: false
+      with:
+        after: false
   line-comment-position: 'off'
   linebreak-style:
   - error
