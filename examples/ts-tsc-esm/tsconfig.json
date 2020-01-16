@@ -8,7 +8,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "intermediate",
+    "outDir": "dist",
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
