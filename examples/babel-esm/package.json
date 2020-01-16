@@ -14,14 +14,14 @@
     "verify": "true"
   },
   "dependencies": {
-    "core-js": "3.6.3"
+    "core-js": "3.6.4"
   },
   "devDependencies": {
-    "@babel/cli": "7.7.7",
-    "@babel/core": "7.7.7",
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
     "@babel/preset-env": "7.7.5",
     "@types/core-js": "2.5.2",
-    "@types/node": "13.1.6",
+    "@types/node": "13.1.7",
     "babel-plugin-module-extension-resolver": "file:../..",
     "cross-env": "6.0.3",
     "npm-check-updates": "4.0.1",
