@@ -35,7 +35,7 @@ const defaultOptions: Options = {
 		".json",
 	],
 	dstExtension: ".js",
-	extensionsToKeep: [".json"],
+	extensionsToKeep: [".cjs", ".mjs", ".json"],
 };
 
 /**
