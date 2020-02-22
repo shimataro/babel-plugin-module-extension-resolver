@@ -7,6 +7,7 @@ node_modules/
 .editorconfig
 .eslintrc.yml
 .markdownlint.yml
+tsconfig.json
 
 # temporary files
 *~
