@@ -159,7 +159,7 @@ With options:
     ["module-extension-resolver", {
       "srcExtensions": [".js", ".cjs", ".mjs", ".es", ".es6", ".ts", ".node", ".json"],
       "dstExtension": ".js",
-      "extensionsToKeep": [".json"]
+      "extensionsToKeep": [".cjs", ".mjs", ".json"]
     }]
   ]
 }
@@ -204,6 +204,8 @@ extension to keep
 
 ```json
 [
+  ".cjs",
+  ".mjs",
   ".json"
 ]
 ```
