@@ -307,12 +307,9 @@ rules: # https://eslint.org/docs/rules/
   - error
   - never
 
-  # import plugin
-  import/extensions: 'off'
-  import/no-unresolved:
-  - error
-
   # @typescript-eslint plugin
+  "@typescript-eslint/ban-ts-ignore": 'off'
+  "@typescript-eslint/no-empty-interface": 'off'
   "@typescript-eslint/no-use-before-define":
   - error
   - functions: false
