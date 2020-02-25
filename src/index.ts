@@ -56,7 +56,7 @@ export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 		name: PLUGIN_NAME,
 		visitor: {
 			Program: {
-				enter: (programPath, state) =>
+				enter: (programPath, state): void =>
 				{
 					// filename = state.file.opts.filename;
 					const {
