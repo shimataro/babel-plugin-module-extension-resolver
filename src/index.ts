@@ -155,7 +155,7 @@ function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.ty
  * @param fileName processing file
  * @param options options
  */
-function replaceSource(types: BabelTypes, source: B.NodePath, fileName: string, options: Options): void
+function replaceSource<T>(types: BabelTypes, source: B.NodePath<T>, fileName: string, options: Options): void
 {
 	if(!source.isStringLiteral())
 	{
