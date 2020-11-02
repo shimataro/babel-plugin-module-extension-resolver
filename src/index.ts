@@ -97,13 +97,13 @@ export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types.CallExpression>, filename: string, options: Options): void
 {
 	const callee = declaration.get("callee");
-	if(!callee.isIdentifier())
+	if(!callee.isIdentifier() && !callee.isImport())
 	{
 		return;
 	}
-	if(callee.node.name !== "require")
+	if(callee.isIdentifier() && callee.node.name !== "require")
 	{
-		// do nothing if function name is not "require"
+		// do nothing if it's a function but not named "require"
 		return;
 	}
 	const args = declaration.get("arguments");
