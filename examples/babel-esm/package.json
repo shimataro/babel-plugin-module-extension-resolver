@@ -14,17 +14,16 @@
     "verify": "true"
   },
   "dependencies": {
-    "core-js": "3.6.5"
+    "core-js": "3.8.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.9.6",
+    "@babel/cli": "7.12.13",
+    "@babel/core": "7.12.13",
     "@babel/preset-env": "7.7.5",
-    "@types/core-js": "2.5.3",
-    "@types/node": "13.13.5",
+    "@types/core-js": "2.5.4",
+    "@types/node": "14.14.25",
     "babel-plugin-module-extension-resolver": "file:../..",
-    "cross-env": "7.0.2",
-    "npm-check-updates": "5.0.0",
-    "npm-run-all": "4.1.5"
+    "cross-env": "7.0.3",
+    "npm-check-updates": "11.1.1"
   }
 }
