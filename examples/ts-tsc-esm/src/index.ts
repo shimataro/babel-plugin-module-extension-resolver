@@ -5,7 +5,8 @@ import * as mod from "./dir/mod";
 
 export * from "./dir/mod";
 
-async function foo() {
+async function foo()
+{
 	const foo = await import("./dir/mod");
 }
 
