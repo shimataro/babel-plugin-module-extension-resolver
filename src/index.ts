@@ -77,10 +77,10 @@ export default (babel: Babel, options: Options): B.PluginObj =>
  * CallExpression() handler; handle "require()" function
  * @param types types
  * @param declaration declaration
- * @param filename filename
+ * @param fileName processing file
  * @param options options
  */
-function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types.CallExpression>, filename: string, options: Options): void
+function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types.CallExpression>, fileName: string, options: Options): void
 {
 	const callee = declaration.get("callee");
 	if(!isRequireOrDynamicImport(callee))
@@ -96,31 +96,31 @@ function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types
 		return;
 	}
 
-	replaceSource(types, args[0], filename, options);
+	replaceSource(types, args[0], fileName, options);
 }
 
 /**
  * ImportDeclaration() handler; handle "import" statement
  * @param types types
  * @param declaration declaration
- * @param filename filename
+ * @param fileName processing file
  * @param options options
  */
-function handleImportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ImportDeclaration>, filename: string, options: Options): void
+function handleImportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ImportDeclaration>, fileName: string, options: Options): void
 {
 	const source = declaration.get("source");
 
-	replaceSource(types, source, filename, options);
+	replaceSource(types, source, fileName, options);
 }
 
 /**
  * ExportDeclaration() handler; handle "export from" statement
  * @param types types
  * @param declaration declaration
- * @param filename filename
+ * @param fileName processing file
  * @param options options
  */
-function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ExportDeclaration>, filename: string, options: Options): void
+function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.types.ExportDeclaration>, fileName: string, options: Options): void
 {
 	const source = declaration.get("source");
 	if(Array.isArray(source))
@@ -128,7 +128,7 @@ function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.ty
 		return;
 	}
 
-	replaceSource(types, source, filename, options);
+	replaceSource(types, source, fileName, options);
 }
 
 /**
