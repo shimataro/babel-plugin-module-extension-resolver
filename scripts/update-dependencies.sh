@@ -25,13 +25,13 @@ do
 	npm i
 	npm dedupe
 
-	# test
-	npm run build
-	npm run verify
-
 	# add to git
 	npm shrinkwrap
 	git add package.json npm-shrinkwrap.json
+
+	# test
+	npm run build
+	npm run verify
 
 	popd
 done
