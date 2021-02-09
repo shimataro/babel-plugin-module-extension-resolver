@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
-    "check-updates": "ncu -x @babel/preset-env",
+    "check-updates": "ncu",
     "verify": "true"
   },
   "dependencies": {
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/cli": "7.12.13",
     "@babel/core": "7.12.13",
-    "@babel/preset-env": "7.7.5",
+    "@babel/preset-env": "7.12.13",
     "@types/core-js": "2.5.4",
     "@types/node": "14.14.25",
     "babel-plugin-module-extension-resolver": "file:../..",
