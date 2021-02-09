@@ -1,3 +1,5 @@
+require("core-js");
+
 require("./dir");
 const mod = require("./dir/mod");
 
