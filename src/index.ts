@@ -152,7 +152,7 @@ function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.ty
  */
 function isRequireOrDynamicImport<T>(callee: B.NodePath<T>): boolean
 {
-	if(callee.type === "Import")
+	if(callee.isImport())
 	{
 		// dynamic import
 		return true;
