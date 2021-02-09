@@ -8,13 +8,6 @@ const PLUGIN_NAME = "babel-plugin-module-extension-resolver";
 // Babel types
 type Babel = typeof B;
 type BabelTypes = typeof B.types;
-type PluginPass = {
-	file: {
-		opts: {
-			filename: string;
-		};
-	};
-};
 
 interface Options
 {
@@ -44,7 +37,7 @@ const defaultOptions: Options = {
  * @param options options
  * @returns plugin object
  */
-export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
+export default (babel: Babel, options: Options): B.PluginObj =>
 {
 	const {types} = babel;
 	const normalizedOptions: Options = {
@@ -58,14 +51,7 @@ export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 			Program: {
 				enter: (programPath, state): void =>
 				{
-					// filename = state.file.opts.filename;
-					const {
-						file: {
-							opts: {
-								filename,
-							},
-						},
-					} = state;
+					const {filename} = state;
 
 					programPath.traverse({
 						CallExpression: (declaration) =>
