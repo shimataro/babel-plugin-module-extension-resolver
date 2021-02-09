@@ -33,20 +33,21 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
+    - name: Install yarn
+      run: npm i -g yarn
     - name: Print versions
       run: |
         node -v
         npm -v
-    - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
-      run: npm i -g npm-run-all typescript babel-cli
+        yarn version
     - name: Install dependencies for plugin
-      run: npm ci || npm i
+      run: yarn install
     - name: Build plugin
-      run: npm run build
+      run: yarn build
     - name: Install dependencies for example
-      run: npm ci --prefix ./examples/${{ matrix.example }} || npm i --prefix ./examples/${{ matrix.example }}
+      run: yarn --cwd ./examples/${{ matrix.example }} install
     - name: Build example
-      run: npm run build --prefix ./examples/${{ matrix.example }}
+      run: yarn --cwd ./examples/${{ matrix.example }} build
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
@@ -86,20 +87,21 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs-build }}
+    - name: Install yarn
+      run: npm i -g yarn
     - name: Print versions
       run: |
         node -v
         npm -v
-    - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
-      run: npm i -g npm-run-all typescript babel-cli
+        yarn version
     - name: Install dependencies for plugin
-      run: npm ci || npm i
+      run: yarn install
     - name: Build plugin
-      run: npm run build
+      run: yarn build
     - name: Install dependencies for example
-      run: npm ci --prefix ./examples/${{ matrix.example }} || npm i --prefix ./examples/${{ matrix.example }}
+      run: yarn --cwd ./examples/${{ matrix.example }} install
     - name: Build example
-      run: npm run build --prefix ./examples/${{ matrix.example }}
+      run: yarn --cwd ./examples/${{ matrix.example }} build
     - name: Install Node.js for run
       uses: actions/setup-node@v1
       with:
