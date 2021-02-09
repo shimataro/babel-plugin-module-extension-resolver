@@ -2924,7 +2924,8 @@
     "graceful-fs": {
       "version": "4.2.5",
       "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.5.tgz",
-      "integrity": "sha512-kBBSQbz2K0Nyn+31j/w36fUfxkBW9/gfwRWdUY1ULReH3iokVJgddZAFcD1D0xlgTmFxJCbUkUclAlc6/IDJkw=="
+      "integrity": "sha512-kBBSQbz2K0Nyn+31j/w36fUfxkBW9/gfwRWdUY1ULReH3iokVJgddZAFcD1D0xlgTmFxJCbUkUclAlc6/IDJkw==",
+      "dev": true
     },
     "har-schema": {
       "version": "2.0.0",
@@ -3611,15 +3612,6 @@
           "integrity": "sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=",
           "dev": true
         }
-      }
-    },
-    "load-json-file": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/load-json-file/-/load-json-file-2.0.0.tgz",
-      "integrity": "sha1-eUfkIUmvgNaWy/eXvKq8/h/inKg=",
-      "requires": {
-        "graceful-fs": "^4.1.2",
-        "parse-json": "^2.2.0"
       }
     },
     "locate-path": {
@@ -4417,11 +4409,6 @@
       "integrity": "sha512-kgBf6avCbO3Cn6+RnzRGLkUsv4ZVqv/VfAYkRsyBcgkshNvVBkRn1FEZcW0Jb+npXQWm2vHPnnOqFteZxRRGNw==",
       "dev": true
     },
-    "parse-json": {
-      "version": "2.2.0",
-      "resolved": "https://registry.npmjs.org/parse-json/-/parse-json-2.2.0.tgz",
-      "integrity": "sha1-9ID0BDTvgHQfhGkJn43qGPVaTck="
-    },
     "pascalcase": {
       "version": "0.1.1",
       "resolved": "https://registry.npmjs.org/pascalcase/-/pascalcase-0.1.1.tgz",
@@ -4629,22 +4616,6 @@
       "requires": {
         "json-parse-even-better-errors": "^2.3.0",
         "npm-normalize-package-bin": "^1.0.1"
-      }
-    },
-    "read-pkg": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/read-pkg/-/read-pkg-2.0.0.tgz",
-      "integrity": "sha1-jvHAYjxqbbDcZxPEv6xGMysjaPg=",
-      "requires": {
-        "load-json-file": "^2.0.0",
-        "path-type": "^2.0.0"
-      },
-      "dependencies": {
-        "path-type": {
-          "version": "2.0.0",
-          "resolved": "https://registry.npmjs.org/path-type/-/path-type-2.0.0.tgz",
-          "integrity": "sha1-8BLMuEFbcJb8LaoQVMPXI4lZTHM="
-        }
       }
     },
     "readable-stream": {
