@@ -97,15 +97,12 @@ export default (babel: Babel, options: Options): B.PluginObj<PluginPass> =>
 function handleCallExpression(types: BabelTypes, declaration: B.NodePath<B.types.CallExpression>, filename: string, options: Options): void
 {
 	const callee = declaration.get("callee");
-	if(!callee.isIdentifier())
+	if(!isRequireOrDynamicImport(callee))
 	{
+		// do nothing if neither "require()" nor "import()"
 		return;
 	}
-	if(callee.node.name !== "require")
-	{
-		// do nothing if function name is not "require"
-		return;
-	}
+
 	const args = declaration.get("arguments");
 	if(args.length !== 1)
 	{
@@ -146,6 +143,28 @@ function handleExportDeclaration(types: BabelTypes, declaration: B.NodePath<B.ty
 	}
 
 	replaceSource(types, source, filename, options);
+}
+
+/**
+ * callee is require() or import()?
+ * @param callee callee
+ * @returns Yes/No
+ */
+function isRequireOrDynamicImport<T>(callee: B.NodePath<T>): boolean
+{
+	if(callee.isImport())
+	{
+		// dynamic import
+		return true;
+	}
+
+	if(callee.isIdentifier() && callee.node.name === "require")
+	{
+		// require()
+		return true;
+	}
+
+	return false;
 }
 
 /**
