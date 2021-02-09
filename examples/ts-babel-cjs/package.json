@@ -8,7 +8,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "build": "./node_modules/.bin/babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
+    "build": "npx babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
     "check-updates": "ncu -x @babel/preset-env",
     "verify": "true"
   },
@@ -23,6 +23,7 @@
     "@types/core-js": "2.5.4",
     "@types/node": "14.14.25",
     "babel-plugin-module-extension-resolver": "file:../..",
-    "npm-check-updates": "11.1.1"
+    "npm-check-updates": "11.1.1",
+    "npx": "10.2.2"
   }
 }

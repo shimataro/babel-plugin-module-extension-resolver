@@ -37,6 +37,8 @@ jobs:
       run: |
         node -v
         npm -v
+    - name: Install npx globally
+      run: npm i -g npx
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin
@@ -88,6 +90,8 @@ jobs:
       run: |
         node -v
         npm -v
+    - name: Install npx globally
+      run: npm i -g npx
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin
