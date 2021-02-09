@@ -25,8 +25,6 @@ jobs:
         exclude:
         - os: windows-latest # not work "babel --extensions '.ts'" on Windows?
           example: "ts-babel-cjs"
-        - os: windows-latest
-          nodejs-build: "6.9.0"
       fail-fast: false
     steps:
     - name: Checkout source codes
