@@ -41,9 +41,9 @@ jobs:
         npm -v
         yarn version
     - name: Install dependencies for plugin
-      run: yarn install
+      run: npm ci || npm i
     - name: Build plugin
-      run: yarn build
+      run: npm run build
     - name: Install dependencies for example
       run: yarn --cwd ./examples/${{ matrix.example }} install
     - name: Build example
@@ -95,9 +95,9 @@ jobs:
         npm -v
         yarn version
     - name: Install dependencies for plugin
-      run: yarn install
+      run: npm ci || npm i
     - name: Build plugin
-      run: yarn build
+      run: npm run build
     - name: Install dependencies for example
       run: yarn --cwd ./examples/${{ matrix.example }} install
     - name: Build example
