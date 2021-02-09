@@ -38,7 +38,7 @@ jobs:
         node -v
         npm -v
     - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
-      run: npm i -g npm-run-all tsc babel
+      run: npm i -g npm-run-all typescript babel-cli
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin
@@ -91,7 +91,7 @@ jobs:
         node -v
         npm -v
     - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
-      run: npm i -g npm-run-all tsc babel
+      run: npm i -g npm-run-all typescript babel-cli
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin
