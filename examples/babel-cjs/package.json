@@ -8,7 +8,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
+    "build": "./node_modules/.bin/babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
     "check-updates": "ncu -x @babel/preset-env",
     "verify": "true"
   },
