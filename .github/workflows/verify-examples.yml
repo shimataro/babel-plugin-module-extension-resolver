@@ -37,8 +37,8 @@ jobs:
       run: |
         node -v
         npm -v
-    - name: Install npx globally
-      run: npm i -g npx
+    - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
+      run: npm i -g npm-run-all tsc babel
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin
@@ -90,8 +90,8 @@ jobs:
       run: |
         node -v
         npm -v
-    - name: Install npx globally
-      run: npm i -g npx
+    - name: Install global packages for Node.js 6.9 (npm 3.10.8)@Windows
+      run: npm i -g npm-run-all tsc babel
     - name: Install dependencies for plugin
       run: npm ci || npm i
     - name: Build plugin

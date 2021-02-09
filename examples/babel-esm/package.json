@@ -9,7 +9,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "build": "npx babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
+    "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
     "check-updates": "ncu -x @babel/preset-env",
     "verify": "true"
   },
@@ -24,7 +24,6 @@
     "@types/node": "14.14.25",
     "babel-plugin-module-extension-resolver": "file:../..",
     "cross-env": "7.0.3",
-    "npm-check-updates": "11.1.1",
-    "npx": "10.2.2"
+    "npm-check-updates": "11.1.1"
   }
 }
