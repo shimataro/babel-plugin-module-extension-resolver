@@ -86,6 +86,10 @@ import "./dir/lib";
 import "./dir";
 
 export * from "./dir";
+
+async function foo() {
+    await import("./dir/lib");
+}
 ```
 
 Run:
@@ -101,6 +105,10 @@ import "./dir/lib.mjs";
 import "./dir/index.mjs";
 
 export * from "./dir/index.mjs";
+
+async function foo() {
+    await import("./dir/lib.mjs");
+}
 ```
 
 ### TypeScript
