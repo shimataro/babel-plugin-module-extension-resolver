@@ -86,6 +86,10 @@ import "./dir/lib";
 import "./dir";
 
 export * from "./dir";
+
+async function foo() {
+    await import("./dir/lib");
+}
 ```
 
 Run:
@@ -101,6 +105,10 @@ import "./dir/lib.mjs";
 import "./dir/index.mjs";
 
 export * from "./dir/index.mjs";
+
+async function foo() {
+    await import("./dir/lib.mjs");
+}
 ```
 
 ### TypeScript
@@ -212,13 +220,13 @@ extension to keep
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Windows/badge.svg?event=push&branch=v0
+[image-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Windows/badge.svg?event=push&branch=v1
 [link-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/macOS/badge.svg?event=push&branch=v0
+[image-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/macOS/badge.svg?event=push&branch=v1
 [link-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Linux/badge.svg?event=push&branch=v0
+[image-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Linux/badge.svg?event=push&branch=v1
 [link-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-examples-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Examples%20check/badge.svg?event=push&branch=v0
+[image-examples-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Examples%20check/badge.svg?event=push&branch=v1
 [link-examples-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver
 [image-release]: https://img.shields.io/github/release/shimataro/babel-plugin-module-extension-resolver.svg
 [link-release]: https://github.com/shimataro/babel-plugin-module-extension-resolver/releases

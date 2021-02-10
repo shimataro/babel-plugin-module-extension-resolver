@@ -1,9 +1,7 @@
-import "core-js";
+require("core-js");
 
-import "./dir";
-import * as mod from "./dir/mod";
-
-export * from "./dir/mod";
+require("./dir");
+const mod = require("./dir/mod");
 
 for(const x of [[1, 2], 3, [4, 5]].flat())
 {

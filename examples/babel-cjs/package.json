@@ -9,21 +9,20 @@
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose",
-    "check-updates": "ncu -x @babel/preset-env",
+    "check-updates": "ncu",
     "verify": "true"
   },
   "dependencies": {
-    "core-js": "3.6.4"
+    "core-js": "3.8.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.3",
-    "@babel/core": "7.8.3",
-    "@babel/preset-env": "7.7.5",
-    "@types/core-js": "2.5.2",
-    "@types/node": "13.1.7",
+    "@babel/cli": "7.12.13",
+    "@babel/core": "7.12.13",
+    "@babel/preset-env": "7.12.13",
+    "@types/core-js": "2.5.4",
+    "@types/node": "14.14.25",
     "babel-plugin-module-extension-resolver": "file:../..",
-    "cross-env": "6.0.3",
-    "npm-check-updates": "4.0.1",
-    "npm-run-all": "4.1.5"
+    "cross-env": "7.0.3",
+    "npm-check-updates": "11.1.1"
   }
 }
