@@ -27,6 +27,7 @@ runs:
       run: |
         node -v
         npm -v
+      shell: bash
 
     # Build
     - name: Build
