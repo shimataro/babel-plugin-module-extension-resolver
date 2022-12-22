@@ -12,8 +12,8 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-run:
-        - "4.0.0"
+        nodejs:
+        - "6.9.0" # minimum version Babel works
         - "12.0.0"
         example:
         - "babel-cjs"
@@ -29,21 +29,24 @@ jobs:
 
     - name: Build
       uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
 
-    - name: Install dependencies for example
+    - name: Install Node.js (example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+
+    - name: Install dependencies (example)
       run: npm ci || npm i
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
-    - name: Install Node.js for run
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs-run }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
     - name: Run example
       run: node ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
@@ -56,7 +59,7 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-run:
+        nodejs:
         - "12.0.0" # minimum version {"type": "modules"} supports in package.json
         example:
         - "babel-esm"
@@ -72,21 +75,24 @@ jobs:
 
     - name: Build
       uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
 
-    - name: Install dependencies for example
+    - name: Install Node.js (example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+
+    - name: Install dependencies (example)
       run: npm ci || npm i
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
-    - name: Install Node.js for run
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs-run }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
     - name: Run example
       run: node --experimental-modules ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
