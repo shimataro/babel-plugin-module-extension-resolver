@@ -93,7 +93,7 @@ jobs:
     - name: Install Node.js (build example)
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version: ${{ matrix.nodejs-build-example }}
     - name: Output versions
       run: |
         node -v
