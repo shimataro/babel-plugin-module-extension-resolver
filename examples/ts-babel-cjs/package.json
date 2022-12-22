@@ -8,7 +8,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
+    "build": "babel ./src --out-dir ./dist --delete-dir-on-start --verbose --extensions '.ts'",
     "verify": "true"
   },
   "dependencies": {

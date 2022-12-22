@@ -12,9 +12,10 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs:
+        nodejs-build-example:
         - "6.9.0" # minimum version Babel CLI works
-        - "12.0.0"
+        nodejs-run-example:
+        - "4.0.0" # target version
         example:
         - "babel-cjs"
         - "ts-babel-cjs"
@@ -32,24 +33,33 @@ jobs:
     - name: Clear modules
       run: npm run clear-modules
 
-    - name: Install Node.js (example)
+    - name: Install Node.js (build example)
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version: ${{ matrix.nodejs-build-example }}
     - name: Output versions
       run: |
         node -v
         npm -v
-
     - name: Install dependencies (example)
       run: yarn
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
+
+    - name: Install Node.js (run example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.nodejs-run-example }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
     - name: Run example
       run: node ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
+
   examples-esm:
     name: Build and run examples (ES Modules)
     runs-on: ${{ matrix.os }}
@@ -59,8 +69,10 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs:
-        - "12.0.0" # minimum version {"type": "modules"} supports in package.json
+        nodejs-build-example:
+        - "6.9.0" # minimum version Babel CLI works
+        nodejs-run-example:
+        - "12.0.0" # minimum version {"type": "module"} supports in package.json
         example:
         - "babel-esm"
         - "ts-babel-esm"
@@ -78,7 +90,7 @@ jobs:
     - name: Clear modules
       run: npm run clear-modules
 
-    - name: Install Node.js (example)
+    - name: Install Node.js (build example)
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.nodejs }}
@@ -86,13 +98,21 @@ jobs:
       run: |
         node -v
         npm -v
-
     - name: Install dependencies (example)
       run: yarn
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
+
+    - name: Install Node.js (run example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.nodejs-run-example }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
     - name: Run example
       run: node --experimental-modules ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
