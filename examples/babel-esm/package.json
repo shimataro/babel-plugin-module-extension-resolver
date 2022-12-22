@@ -19,9 +19,6 @@
     "@babel/cli": "7.20.7",
     "@babel/core": "7.20.7",
     "@babel/preset-env": "7.20.2",
-    "@types/core-js": "2.5.5",
-    "@types/node": "18.11.17",
-    "babel-plugin-module-extension-resolver": "file:../..",
-    "cross-env": "7.0.3"
+    "babel-plugin-module-extension-resolver": "file:../.."
   }
 }
