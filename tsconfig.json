@@ -8,7 +8,7 @@
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ES2016"
   },
   "include": [
     "src/**/*.ts"
