@@ -40,8 +40,6 @@ function main() {
 	create_branch ${BRANCH}
 	update_changelog ${VERSION}
 	update_package_version ${VERSION}
-	update_dependencies_version
-	regenerate_npm_shrinkwrap
 	verify_package
 	commit_changes ${VERSION}
 	finish ${VERSION} ${BRANCH} ${TAG}
@@ -112,20 +110,7 @@ function update_changelog() {
 function update_package_version() {
 	local VERSION=$1
 
-	sed -i".bak" -r \
-		-e "s/(\"version\"\s*:\s*)\".*?\"/\1\"${VERSION}\"/" \
-		package.json
-}
-
-function update_dependencies_version() {
-	npm run check-updates -- -u
-}
-
-function regenerate_npm_shrinkwrap() {
-	rm -rf npm-shrinkwrap.json node_modules
-	npm i
-	npm dedupe
-	npm shrinkwrap
+	npm version --no-git-tag-version ${VERSION}
 }
 
 function verify_package() {
@@ -135,7 +120,7 @@ function verify_package() {
 function commit_changes() {
 	local VERSION=$1
 
-	git add CHANGELOG.md package.json npm-shrinkwrap.json
+	git add CHANGELOG.md package.json package-lock.json
 	git commit -m "version ${VERSION}"
 }
 
