@@ -6,7 +6,7 @@
   "type": "module",
   "private": true,
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=6.9.0"
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist --delete-dir-on-start --verbose",
