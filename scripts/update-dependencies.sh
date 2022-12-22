@@ -21,13 +21,12 @@ do
 	npm run check-updates -- -u
 
 	# re-install packages
-	rm -rf npm-shrinkwrap.json node_modules
+	rm -rf package-lock.json node_modules
 	npm i
 	npm dedupe
 
 	# add to git
-	npm shrinkwrap
-	git add package.json npm-shrinkwrap.json
+	git add package.json package-lock.json
 
 	# test
 	npm run build
