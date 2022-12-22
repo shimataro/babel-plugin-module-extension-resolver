@@ -11,19 +11,9 @@ jobs:
       run: git config --global core.autocrlf false
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 12
-    - name: Output versions
-      run: |
-        node -v
-        npm -v
-    - name: Install dependencies
-      run: |
-        npm ci
-        if (!$?) {
-          npm i
-        }
+
+    - name: Build
+      uses: ./.github/actions/build
+
     - name: Verify
       run: npm run verify

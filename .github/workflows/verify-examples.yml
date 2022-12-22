@@ -12,8 +12,6 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-build:
-        - "12.0.0"
         nodejs-run:
         - "4.0.0"
         - "12.0.0"
@@ -28,18 +26,10 @@ jobs:
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install Node.js for build
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs-build }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
-    - name: Install dependencies for plugin
-      run: npm ci || npm i
-    - name: Build plugin
-      run: npm run build
+
+    - name: Build
+      uses: ./.github/actions/build
+
     - name: Install dependencies for example
       run: npm ci || npm i
       working-directory: ./examples/${{ matrix.example }}
@@ -66,8 +56,6 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-build:
-        - "12.0.0"
         nodejs-run:
         - "12.0.0" # minimum version {"type": "modules"} supports in package.json
         example:
@@ -81,18 +69,10 @@ jobs:
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install Node.js for build
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs-build }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
-    - name: Install dependencies for plugin
-      run: npm ci || npm i
-    - name: Build plugin
-      run: npm run build
+
+    - name: Build
+      uses: ./.github/actions/build
+
     - name: Install dependencies for example
       run: npm ci || npm i
       working-directory: ./examples/${{ matrix.example }}
