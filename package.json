@@ -19,25 +19,27 @@
   "scripts": {
     "build": "tsc",
     "check-updates": "ncu",
+    "clear-modules": "rimraf ./node_modules",
     "lint": "run-p lint:*",
-    "lint:ts": "eslint ./src --ext .ts",
     "lint:md": "markdownlint . --ignore node_modules --ignore examples",
+    "lint:ts": "eslint ./src --ext .ts",
     "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
     "verify": "run-p lint"
   },
   "devDependencies": {
-    "@babel/core": "7.12.13",
-    "@types/babel__core": "7.1.12",
-    "@types/node": "14.14.25",
-    "@typescript-eslint/eslint-plugin": "4.15.0",
-    "@typescript-eslint/parser": "4.15.0",
-    "eslint": "7.19.0",
-    "eslint-plugin-import": "2.22.1",
-    "markdownlint-cli": "0.26.0",
-    "npm-check-updates": "11.1.1",
+    "@babel/core": "7.20.7",
+    "@types/babel__core": "7.1.20",
+    "@types/node": "18.11.17",
+    "@typescript-eslint/eslint-plugin": "5.47.0",
+    "@typescript-eslint/parser": "5.47.0",
+    "eslint": "8.30.0",
+    "eslint-plugin-import": "2.26.0",
+    "markdownlint-cli": "0.32.2",
+    "npm-check-updates": "16.6.2",
     "npm-run-all": "4.1.5",
-    "typescript": "4.1.4",
-    "yaml-lint": "1.2.4"
+    "rimraf": "3.0.2",
+    "typescript": "4.9.4",
+    "yaml-lint": "1.7.0"
   },
   "engines": {
     "node": ">=6.9.0"

@@ -12,10 +12,8 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-build:
-        - "12.0.0"
-        nodejs-run:
-        - "4.0.0"
+        nodejs:
+        - "6.9.0" # minimum version Babel CLI works
         - "12.0.0"
         example:
         - "babel-cjs"
@@ -27,33 +25,28 @@ jobs:
       fail-fast: false
     steps:
     - name: Checkout source codes
-      uses: actions/checkout@v2
-    - name: Install Node.js for build
-      uses: actions/setup-node@v1
+      uses: actions/checkout@v3
+
+    - name: Build
+      uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
+
+    - name: Install Node.js (example)
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.nodejs-build }}
-    - name: Print versions
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
       run: |
         node -v
         npm -v
-    - name: Install dependencies for plugin
-      run: npm ci || npm i
-    - name: Build plugin
-      run: npm run build
-    - name: Install dependencies for example
-      run: npm ci || npm i
+
+    - name: Install dependencies (example)
+      run: yarn
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
-    - name: Install Node.js for run
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs-run }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
     - name: Run example
       run: node ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
@@ -66,9 +59,7 @@ jobs:
         - windows-latest
         - macos-latest
         - ubuntu-latest
-        nodejs-build:
-        - "12.0.0"
-        nodejs-run:
+        nodejs:
         - "12.0.0" # minimum version {"type": "modules"} supports in package.json
         example:
         - "babel-esm"
@@ -80,33 +71,28 @@ jobs:
       fail-fast: false
     steps:
     - name: Checkout source codes
-      uses: actions/checkout@v2
-    - name: Install Node.js for build
-      uses: actions/setup-node@v1
+      uses: actions/checkout@v3
+
+    - name: Build
+      uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
+
+    - name: Install Node.js (example)
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.nodejs-build }}
-    - name: Print versions
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
       run: |
         node -v
         npm -v
-    - name: Install dependencies for plugin
-      run: npm ci || npm i
-    - name: Build plugin
-      run: npm run build
-    - name: Install dependencies for example
-      run: npm ci || npm i
+
+    - name: Install dependencies (example)
+      run: yarn
       working-directory: ./examples/${{ matrix.example }}
     - name: Build example
       run: npm run build
       working-directory: ./examples/${{ matrix.example }}
-    - name: Install Node.js for run
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs-run }}
-    - name: Print versions
-      run: |
-        node -v
-        npm -v
     - name: Run example
       run: node --experimental-modules ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
