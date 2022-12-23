@@ -1,0 +1,78 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+on: push
+name: Examples
+jobs:
+  examples-cjs:
+    name: Build and run examples (CommonJS)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        - macos-latest
+        - ubuntu-latest
+        nodejs:
+        - "4.0.0" # target version
+        example:
+        - "babel-cjs"
+        - "ts-babel-cjs"
+        - "ts-tsc-cjs"
+        exclude:
+        - os: windows-latest # not work "babel --extensions '.ts'" on Windows?
+          example: "ts-babel-cjs"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v3
+
+    # Build plugin
+    - name: Build
+      uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
+      shell: bash
+
+    # Run example
+    - name: Run example
+      uses: ./.github/actions/example
+      with:
+        node-version-run: ${{ matrix.nodejs }}
+        directory-example: ${{ matrix.example }}
+
+  examples-esm:
+    name: Build and run examples (ES Modules)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        - macos-latest
+        - ubuntu-latest
+        nodejs:
+        - "12.17.0" # minimum version {"type": "module"} supports in package.json
+        example:
+        - "babel-esm"
+        - "ts-babel-esm"
+        - "ts-tsc-esm"
+        exclude:
+        - os: windows-latest # not work "babel --extensions '.ts'" on Windows?
+          example: "ts-babel-esm"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v3
+
+    # Build plugin
+    - name: Build
+      uses: ./.github/actions/build
+    - name: Clear modules
+      run: npm run clear-modules
+      shell: bash
+
+    # Run example
+    - name: Run example
+      uses: ./.github/actions/example
+      with:
+        node-version-run: ${{ matrix.nodejs }}
+        directory-example: ${{ matrix.example }}

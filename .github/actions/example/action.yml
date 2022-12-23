@@ -1,0 +1,52 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+name: Run example
+description: Composite action (run example)
+
+inputs:
+  node-version-build:
+    description: Node.js version (build)
+    required: false
+    default: "6.9.0" # minimum version Babel CLI works
+  node-version-run:
+    description: Node.js version (run)
+    required: true
+  directory-example:
+    description: Directory of example
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # Build
+    - name: Install Node.js (build example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version-build }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+      shell: bash
+    - name: Install dependencies (example)
+      run: yarn
+      working-directory: ./examples/${{ inputs.directory-example }}
+      shell: bash
+    - name: Build example
+      run: npm run build
+      working-directory: ./examples/${{ inputs.directory-example }}
+      shell: bash
+
+    # Run
+    - name: Install Node.js (run example)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version-run }}
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
+      shell: bash
+    - name: Run example
+      run: node ./dist/index.js
+      working-directory: ./examples/${{ inputs.directory-example }}
+      shell: bash
