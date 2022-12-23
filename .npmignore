@@ -22,3 +22,6 @@ Thumbs.db
 # patch/merge
 *.orig
 *.rej
+
+# IDE files
+*.code-workspace
