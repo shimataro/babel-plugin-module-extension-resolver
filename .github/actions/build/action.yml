@@ -20,9 +20,6 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         registry-url: ${{ inputs.registry-url }}
-    - name: Install dependencies
-      run: npm ci
-      shell: bash
     - name: Output versions
       run: |
         node -v
@@ -30,6 +27,9 @@ runs:
       shell: bash
 
     # Build
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
     - name: Build
       run: npm run build
       shell: bash
