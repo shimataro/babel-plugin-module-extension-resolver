@@ -3,7 +3,7 @@
 [![Build Status (Windows)][image-build-windows]][link-build-windows]
 [![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
-[![Examples check][image-examples-check]][link-examples-check]
+[![Examples][image-examples]][link-examples]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
 [![License][image-license]][link-license]
@@ -220,14 +220,14 @@ extension to keep
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Windows/badge.svg?event=push&branch=v1
+[image-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Windows/badge.svg?event=push
 [link-build-windows]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/macOS/badge.svg?event=push&branch=v1
+[image-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/macOS/badge.svg?event=push
 [link-build-macos]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Linux/badge.svg?event=push&branch=v1
+[image-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Linux/badge.svg?event=push
 [link-build-linux]: https://github.com/shimataro/babel-plugin-module-extension-resolver
-[image-examples-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Examples%20check/badge.svg?event=push&branch=v1
-[link-examples-check]: https://github.com/shimataro/babel-plugin-module-extension-resolver
+[image-examples]: https://github.com/shimataro/babel-plugin-module-extension-resolver/workflows/Examples/badge.svg?event=push
+[link-examples]: https://github.com/shimataro/babel-plugin-module-extension-resolver
 [image-release]: https://img.shields.io/github/release/shimataro/babel-plugin-module-extension-resolver.svg
 [link-release]: https://github.com/shimataro/babel-plugin-module-extension-resolver/releases
 [image-engine]: https://img.shields.io/node/v/babel-plugin-module-extension-resolver.svg

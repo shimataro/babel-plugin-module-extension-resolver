@@ -52,6 +52,10 @@ export default (babel: Babel, options: Options): B.PluginObj =>
 				enter: (programPath, state): void =>
 				{
 					const {filename} = state;
+					if(filename === undefined)
+					{
+						return;
+					}
 
 					programPath.traverse({
 						CallExpression: (declaration) =>

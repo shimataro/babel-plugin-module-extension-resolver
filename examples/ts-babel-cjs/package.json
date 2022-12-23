@@ -8,21 +8,19 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "build": "babel ./src --out-dir ./dist --source-maps --delete-dir-on-start --verbose --extensions '.ts'",
-    "check-updates": "ncu",
+    "build": "babel ./src --out-dir ./dist --delete-dir-on-start --verbose --extensions '.ts'",
     "verify": "true"
   },
   "dependencies": {
-    "core-js": "3.8.3"
+    "core-js": "3.26.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.13",
-    "@babel/core": "7.12.13",
-    "@babel/preset-env": "7.12.13",
-    "@babel/preset-typescript": "7.12.13",
-    "@types/core-js": "2.5.4",
-    "@types/node": "14.14.25",
-    "babel-plugin-module-extension-resolver": "file:../..",
-    "npm-check-updates": "11.1.1"
+    "@babel/cli": "7.20.7",
+    "@babel/core": "7.20.7",
+    "@babel/preset-env": "7.20.2",
+    "@babel/preset-typescript": "7.18.6",
+    "@types/core-js": "2.5.5",
+    "@types/node": "18.11.17",
+    "babel-plugin-module-extension-resolver": "file:../.."
   }
 }
