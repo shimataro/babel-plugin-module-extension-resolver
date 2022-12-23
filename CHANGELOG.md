@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-12-23
+
+### Others
+
+* some refactorings and package update
+
 ## [1.0.0-rc.2] - 2021-02-10
 
 ### Added
@@ -53,7 +59,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v1.0.0-rc.2...HEAD
+[Unreleased]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v1.0.0-rc.2...v1.0.0
 [1.0.0-rc.2]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v1.0.0-rc.1...v1.0.0-rc.2
 [1.0.0-rc.1]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v0.3.0...v1.0.0-rc.1
 [0.3.0]: https://github.com/shimataro/babel-plugin-module-extension-resolver/compare/v0.2.0...v0.3.0
