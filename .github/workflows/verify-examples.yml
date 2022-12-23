@@ -72,7 +72,7 @@ jobs:
         nodejs-build-example:
         - "6.9.0" # minimum version Babel CLI works
         nodejs-run-example:
-        - "12.0.0" # minimum version {"type": "module"} supports in package.json
+        - "12.17.0" # minimum version {"type": "module"} supports in package.json
         example:
         - "babel-esm"
         - "ts-babel-esm"
@@ -114,5 +114,5 @@ jobs:
         node -v
         npm -v
     - name: Run example
-      run: node --experimental-modules ./dist/index.js
+      run: node ./dist/index.js
       working-directory: ./examples/${{ matrix.example }}
