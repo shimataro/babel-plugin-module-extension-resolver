@@ -1,7 +1,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Examples check
+name: Examples
 jobs:
   examples-cjs:
     name: Build and run examples (CommonJS)
@@ -13,8 +13,7 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs:
-        - "6.9.0" # minimum version Babel CLI works
-        - "12.0.0"
+        - "4.0.0" # target version
         example:
         - "babel-cjs"
         - "ts-babel-cjs"
@@ -27,29 +26,20 @@ jobs:
     - name: Checkout source codes
       uses: actions/checkout@v3
 
+    # Build plugin
     - name: Build
       uses: ./.github/actions/build
     - name: Clear modules
       run: npm run clear-modules
+      shell: bash
 
-    - name: Install Node.js (example)
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs }}
-    - name: Output versions
-      run: |
-        node -v
-        npm -v
-
-    - name: Install dependencies (example)
-      run: yarn
-      working-directory: ./examples/${{ matrix.example }}
-    - name: Build example
-      run: npm run build
-      working-directory: ./examples/${{ matrix.example }}
+    # Run example
     - name: Run example
-      run: node ./dist/index.js
-      working-directory: ./examples/${{ matrix.example }}
+      uses: ./.github/actions/example
+      with:
+        node-version-run: ${{ matrix.nodejs }}
+        directory-example: ${{ matrix.example }}
+
   examples-esm:
     name: Build and run examples (ES Modules)
     runs-on: ${{ matrix.os }}
@@ -60,7 +50,7 @@ jobs:
         - macos-latest
         - ubuntu-latest
         nodejs:
-        - "12.0.0" # minimum version {"type": "modules"} supports in package.json
+        - "12.17.0" # minimum version {"type": "module"} supports in package.json
         example:
         - "babel-esm"
         - "ts-babel-esm"
@@ -73,26 +63,16 @@ jobs:
     - name: Checkout source codes
       uses: actions/checkout@v3
 
+    # Build plugin
     - name: Build
       uses: ./.github/actions/build
     - name: Clear modules
       run: npm run clear-modules
+      shell: bash
 
-    - name: Install Node.js (example)
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.nodejs }}
-    - name: Output versions
-      run: |
-        node -v
-        npm -v
-
-    - name: Install dependencies (example)
-      run: yarn
-      working-directory: ./examples/${{ matrix.example }}
-    - name: Build example
-      run: npm run build
-      working-directory: ./examples/${{ matrix.example }}
+    # Run example
     - name: Run example
-      run: node --experimental-modules ./dist/index.js
-      working-directory: ./examples/${{ matrix.example }}
+      uses: ./.github/actions/example
+      with:
+        node-version-run: ${{ matrix.nodejs }}
+        directory-example: ${{ matrix.example }}

@@ -4,5 +4,6 @@
   ],
   "plugins": [
     ["module-extension-resolver"]
-  ]
+  ],
+  "sourceMaps": true
 }
