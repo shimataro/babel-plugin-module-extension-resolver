@@ -1,12 +1,11 @@
+# dotfiles
+.*
+
+# files for build
 /examples/
 /scripts/
 /src/
-.github/
 node_modules/
-.babelrc
-.editorconfig
-.eslintrc.yml
-.markdownlint.yml
 tsconfig.json
 
 # temporary files
@@ -25,5 +24,4 @@ Thumbs.db
 *.rej
 
 # IDE files
-/.vscode/
 *.code-workspace

@@ -26,14 +26,12 @@ jobs:
     - name: Checkout source codes
       uses: actions/checkout@v3
 
-    # Build plugin
-    - name: Build
+    - name: Build plugin
       uses: ./.github/actions/build
     - name: Clear modules
       run: npm run clear-modules
       shell: bash
 
-    # Run example
     - name: Run example
       uses: ./.github/actions/example
       with:
@@ -63,14 +61,12 @@ jobs:
     - name: Checkout source codes
       uses: actions/checkout@v3
 
-    # Build plugin
-    - name: Build
+    - name: Build plugin
       uses: ./.github/actions/build
     - name: Clear modules
       run: npm run clear-modules
       shell: bash
 
-    # Run example
     - name: Run example
       uses: ./.github/actions/example
       with:
